@@ -10,6 +10,26 @@ Native Action bar coming with a theme may act differently on different android v
 
 **If any changes are made in menu one should call `invalidateOptionsMenu()` to invalidate the current options menu. On calling this method, `onCreateOptionMenu` will be called again and it will create the view from scratch again**.
 
+To add a backbutton on the action bar for any activity, just call `getSupportActionBar().setDisplayHomeAsUpEnabled(true);` before setting the contentView of the given activity. To define the back activity, add parent activity to the activity where you want to switch back on pressing back button.
+
+```java
+// Code for adding BackButton in activity
+super.onCreate(savedInstanceState);
+getSupportActionBar().setTitle("Add Note");
+getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+binding = ActivityTakeNoteBinding.inflate(getLayoutInflater());
+
+setContentView(binding.getRoot());
+
+// Somewhere in Mainfest file
+<activity
+    android:name=".TakeNote"
+	android:exported="false"
+    android:parentActivityName=".MainActivity" /> // This is the line used to set parent activity
+```
+
+
+
 ## Code
 
 [^1]:menu_items code
