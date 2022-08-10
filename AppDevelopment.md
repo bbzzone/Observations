@@ -5,8 +5,6 @@
 - **Gradle Script**: `(Project Folder)/build.gradle`
 - **Manifest**: `(Project Folder)/src/main/AndroidManifest.xml`
 
-
-
 ## build.gradle
 
 This file contains information like minimum sdk, application id, application version code etc.
@@ -53,11 +51,9 @@ dependencies {
 
 It also contain very important option **dependencies** which is the dependencies required to build the application.
 
-
-
 ## Manifest File
 
-This file contains the information about the application like, application name, icon,  theme information etc. More importantly this will have permission which application is going to use on device. It also contain information about screen orientation.
+This file contains the information about the application like, application name, icon, theme information etc. More importantly this will have permission which application is going to use on device. It also contain information about screen orientation.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -89,19 +85,17 @@ This file contains the information about the application like, application name,
 </manifest>
 ```
 
-
-
 ## Resources folder (res)
 
-This folder contains many different other folders and is located at `(Project Folder)/app/src/main/res`. This folder contain various other folders for different purposes, like `drawables, mipmap, values, layout`. 
+This folder contains many different other folders and is located at `(Project Folder)/app/src/main/res`. This folder contain various other folders for different purposes, like `drawables, mipmap, values, layout`.
 
-- layout folder contains the *activity_main.xml* file 
+- layout folder contains the _activity_main.xml_ file
 - **drawable** contains the pictures for the project.
-- **mipmap** folders contain some pictures of different resolutions, which are used for devices with different resolutions. mipmap folders are **(mipmap-hdpi, mipmap-anydpi-v24, mipmap-dpi etc.)**  
+- **mipmap** folders contain some pictures of different resolutions, which are used for devices with different resolutions. mipmap folders are **(mipmap-hdpi, mipmap-anydpi-v24, mipmap-dpi etc.)**
 - **values** folder contains variables which are assigned some values which can be pointed by their representatives anywhere in the project.
-- **values folder** also contains **theme** information (i.e. light theme or dark theme) both are represented by **themes.xml** but one is present in values folder and another in **values-night**. 
+- **values folder** also contains **theme** information (i.e. light theme or dark theme) both are represented by **themes.xml** but one is present in values folder and another in **values-night**.
 
-### Drawable 
+### Drawable
 
 This folder also contains various design files like (button designs, )
 
@@ -162,7 +156,7 @@ The above code creates 2 LinearLayouts. 1st one is Vertical and another 2nd layo
 
 ## Relative Layout
 
-This is the layout which will place elements relative to each other. There are some attributes which can help achieve this like **(android:layout_below="@+id/button1", android:layout_above="@+id/button1")**  
+This is the layout which will place elements relative to each other. There are some attributes which can help achieve this like **(android:layout_below="@+id/button1", android:layout_above="@+id/button1")**
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -202,7 +196,7 @@ This is the layout which will place elements relative to each other. There are s
 </RelativeLayout>
 ```
 
-In this code Button 1 is created in Relative layout which is **centered vertically and horizontally** than another button 2 is created which will be be set to be below button 1 using `android:layout_below="@+id/button1"` and another button with name Button 0 is created which is also placed above button 1 with `android:layout_above="@+id/button1"`. 
+In this code Button 1 is created in Relative layout which is **centered vertically and horizontally** than another button 2 is created which will be be set to be below button 1 using `android:layout_below="@+id/button1"` and another button with name Button 0 is created which is also placed above button 1 with `android:layout_above="@+id/button1"`.
 
 ` android:layout_centerHorizontal="true"` and ` android:layout_centerVertical="true"` will not work in linear layout or table layout.
 
@@ -367,7 +361,7 @@ text.setHeight(345);
 text.setWidth(745);
 ```
 
-### Adding Listeners 
+### Adding Listeners
 
 ```java
 text.setOnClickListener(view -> text.setText("Click"));
@@ -380,9 +374,9 @@ text.setOnLongClickListener(view -> {
 
 On click Listener will be invoked on single press on textView. `setOnLongClickListener` will be invoked when textView is long pressed. Now if lamda function passed to `setOnLongClickListener` will return true than it will indicate that the event has been handled and listener should stop now, but if received false than it will continue to listen for other events (i.e. release event which can invoke `onClickListener`, same is true for other values like `onTouchListener`).
 
-*So if `setOnLongClickListener` return false than on releasing the textView it will again trigger `setOnClickListener as it need to watch for other listener events (here release event)`*. 
+_So if `setOnLongClickListener` return false than on releasing the textView it will again trigger `setOnClickListener as it need to watch for other listener events (here release event)`_.
 
-There are 3 possible events **LONG PRESS, RELEASE, PRESS**. If one doesn't care about it than `setOnClickListener` will do the pretty much work. But there are cases where where RELEASE and PRESS have significant role and this can be achieved with 
+There are 3 possible events **LONG PRESS, RELEASE, PRESS**. If one doesn't care about it than `setOnClickListener` will do the pretty much work. But there are cases where where RELEASE and PRESS have significant role and this can be achieved with
 
 ```java
 text.setOnTouchListener((view, motionEvent) -> {
@@ -396,8 +390,6 @@ text.setOnTouchListener((view, motionEvent) -> {
     return true;
 });
 ```
-
-
 
 ## Buttons
 
@@ -478,7 +470,7 @@ In Android-Studio one can create drawables by going to **New->Drawable resource 
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android" 							android:shape="rectangle" 
+<shape xmlns:android="http://schemas.android.com/apk/res/android" 							android:shape="rectangle"
 >
     <corners
         android:radius="20dp"
@@ -606,9 +598,9 @@ Below is code for some buttons created using material ui from google.
 
 ## EditTexts
 
-EditText can be used to take input text like, *username, password, num-password, address  etc.* . 
+EditText can be used to take input text like, _username, password, num-password, address etc._ .
 
-Values can be checked for null with `TextUtils.isEmpty(myString)`.  `Objects.requireNonNullElse(obj, default_value)` will not work as that is only supported with 1.9+ jdk versions.
+Values can be checked for null with `TextUtils.isEmpty(myString)`. `Objects.requireNonNullElse(obj, default_value)` will not work as that is only supported with 1.9+ jdk versions.
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -633,7 +625,7 @@ Values can be checked for null with `TextUtils.isEmpty(myString)`.  `Objects.req
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:ems="10"
-              
+
         android:autofillHints="username"
         android:inputType="textPersonName"
         android:maxLength="10"
@@ -651,7 +643,7 @@ Values can be checked for null with `TextUtils.isEmpty(myString)`.  `Objects.req
         android:layout_weight="1"
         android:ems="10"
         android:minEms="6"
-              
+
         android:autofillHints="password"
         android:inputType="textPassword"
         android:hint="Enter password" />
@@ -664,7 +656,7 @@ Values can be checked for null with `TextUtils.isEmpty(myString)`.  `Objects.req
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-              
+
         android:inputType="phone"
         android:autofillHints="phone"
         android:hint="Phone"
@@ -678,7 +670,7 @@ Values can be checked for null with `TextUtils.isEmpty(myString)`.  `Objects.req
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-              
+
         android:inputType="textEmailAddress"
         android:autofillHints="emailAddress"
         android:hint="Email"
@@ -692,11 +684,11 @@ Values can be checked for null with `TextUtils.isEmpty(myString)`.  `Objects.req
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-              
+
         android:inputType="numberDecimal"
         android:importantForAutofill="no"
         android:hint="Age"
-        />	
+        />
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button0"
         android:layout_width="match_parent"
@@ -741,7 +733,7 @@ Values can be checked for null with `TextUtils.isEmpty(myString)`.  `Objects.req
 </LinearLayout>
 ```
 
-This is the xml code for a user data menu where there are some **EditText** with some buttons and handled with below java code. All Edittext are same above but have  `android:inputType="numberDecimal"` set which will tell what kind of input this need so android will present with the required keyboard style. `android:hint="Username"` and `android:maxLength="10"` are other 2 useful methods.
+This is the xml code for a user data menu where there are some **EditText** with some buttons and handled with below java code. All Edittext are same above but have `android:inputType="numberDecimal"` set which will tell what kind of input this need so android will present with the required keyboard style. `android:hint="Username"` and `android:maxLength="10"` are other 2 useful methods.
 
 `android:autofillHints="username"`: this is used to tell the android system that the value inside this field will be a username so that android will serve accordigly i.e. will give username suggestions, This can be disabled with `android:importantForAutofill="no"` property.
 
@@ -803,7 +795,7 @@ public class MainActivity extends AppCompatActivity{
 
 Above is the java code to handle the backend processing. `username.setError("Wrong value")` can be used to set an error if some kind of wrong field is received as a response.
 
-Custom Edit texts can be used with more wide options like MaterialEditText but that needed to be added in dependencies to be used. more info [here](https://github.com/rengwuxian/MaterialEditText) 
+Custom Edit texts can be used with more wide options like MaterialEditText but that needed to be added in dependencies to be used. more info [here](https://github.com/rengwuxian/MaterialEditText)
 
 ### TextInputLayout
 
@@ -905,17 +897,17 @@ This can be used as a wrapper around **EditText or TextInputEditText** which wil
         style="@style/Widget.Material3.Button.OutlinedButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-                                                           
+
         app:boxCornerRadiusTopStart="30dp"
         app:boxCornerRadiusTopEnd="30dp"
         app:boxCornerRadiusBottomEnd="30dp"
         app:boxCornerRadiusBottomStart="30dp"
-                                                           
+
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
-                                                           
+
         app:boxStrokeWidth="2dp"
         app:boxStrokeColor="@color/teal_200"
         app:boxStrokeErrorColor="#E80E0E"
@@ -985,7 +977,7 @@ This can be used as a wrapper around **EditText or TextInputEditText** which wil
 </LinearLayout>
 ```
 
- TextInputLayout provides counter functionality which will show a counter for input chars. If input goes above given set value it will turn that red, but it can't stop taking input above that value. To restrict user to enter chars upto a limit set `maxLength` in `TextInputEditText`. 
+TextInputLayout provides counter functionality which will show a counter for input chars. If input goes above given set value it will turn that red, but it can't stop taking input above that value. To restrict user to enter chars upto a limit set `maxLength` in `TextInputEditText`.
 
 We can also set a text watcher for a field like during input in username or anyother field with every change in char value it will process according to text watcher methods.
 
@@ -1050,8 +1042,6 @@ private final TextWatcher watcher = new TextWatcher() {
 };
 ```
 
-
-
 ## ImageView
 
 These are used to add images to the application. It is simple to use and below is xml code snippet just for imageView
@@ -1073,16 +1063,16 @@ android:scaleType="fitCenter"
 />
 ```
 
-`srcCompat` is the attribute which will be set as content of image View. `content description` is used by screen readers. `scaleType` is important as this will align the image in **ImageView**. 
+`srcCompat` is the attribute which will be set as content of image View. `content description` is used by screen readers. `scaleType` is important as this will align the image in **ImageView**.
 
 **Important:** `app:srcCompat` is used to integrate vector images and draw them. But `android:src` is used to draw images with their own resolution. For vector images one need to add this in build.gradel file
 
 ```java
-android {  
-   defaultConfig {  
-     vectorDrawables.useSupportLibrary = true  
-    }  
- }  
+android {
+   defaultConfig {
+     vectorDrawables.useSupportLibrary = true
+    }
+ }
 ```
 
 For java code we are simply setting image in imageView according to a string we received from textEdit and after pressing submit button the image there will change.
@@ -1099,7 +1089,7 @@ submit.setOnClickListener(view -> {
 
 ### ShapeableImageView
 
-To achive different type of images views one can use shapeableImageView, but for that you need some styles defined. Below xml file contains some styles **(place this file in `res/values`)**. 
+To achive different type of images views one can use shapeableImageView, but for that you need some styles defined. Below xml file contains some styles **(place this file in `res/values`)**.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -1242,7 +1232,7 @@ there are other methods available also like `setBackgroundResource` and many mor
 
 ## CheckBox
 
-There is the xml for checkbox, there are 	MaterialCheckBox also with some greater ability.
+There is the xml for checkbox, there are MaterialCheckBox also with some greater ability.
 
 ```xml
 <CheckBox
@@ -1282,7 +1272,7 @@ Some java code to control the above layout
 
 ## RadioButtons
 
-These are the buttons which are used to select one option from some bunch of other options. These are similar to CheckBoxes. 
+These are the buttons which are used to select one option from some bunch of other options. These are similar to CheckBoxes.
 
 These need to be defined in **RadioGroup**. From one RadioGroup one can select a single item.
 
@@ -1379,7 +1369,7 @@ We can use this layout for a quiz app where toggle button will be used to show o
 
 This is a drop down selector. It will list a bunch of options from which we need to select one
 
-Here is the xml code for Spinner 
+Here is the xml code for Spinner
 
 ```xml
 <TextView
@@ -1424,8 +1414,6 @@ spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 });
 ```
 
-
-
 ## Creating Adapter
 
 ### Raw Adapter
@@ -1443,7 +1431,7 @@ spinner.setAdapter(adapter);
 
 ```java
 ArrayAdapter<String> adapter;
-adapter = new ArrayAdapter<String>(this, 
+adapter = new ArrayAdapter<String>(this,
                            android.R.layout.simple_spinner_item,
                                   gerResources().getStringArray(
                                   	R.array.Countries)
@@ -1456,7 +1444,7 @@ spinner.setAdapter(adapter);
 
 # User Interactions
 
-## Toast 
+## Toast
 
 `Toast.makeText(this, "Hey there", Toast.LENGTH_SHORT).show();`
 
@@ -1493,8 +1481,6 @@ image = layout.findViewById(R.id.image);
 image.setImageResource(R.drawable.image2);
 ```
 
-
-
 **custom_toast.xml file below**
 
 ```xml
@@ -1528,7 +1514,7 @@ image.setImageResource(R.drawable.image2);
 </LinearLayout>
 ```
 
-[this is another way to define custom toast](https://stackoverflow.com/questions/16788827/change-text-and-icon-in-a-custom-toast/16789027#16789027) 
+[this is another way to define custom toast](https://stackoverflow.com/questions/16788827/change-text-and-icon-in-a-custom-toast/16789027#16789027)
 
 ## Snackbar Message
 
@@ -1548,15 +1534,15 @@ Button can be set with `setAction` method. 1st parameter to this method will be 
 
 ## Dialog Message
 
-Dialog Message should use activity context, if application context is used it will give an error. One can get **Application context** with 
+Dialog Message should use activity context, if application context is used it will give an error. One can get **Application context** with
 
 > getApplication()
 >
 > getApplicationContext()
 >
-> getBaseContext()	// offers activity context
+> getBaseContext() // offers activity context
 >
-> MainActivity.this	// offers activity context
+> MainActivity.this // offers activity context
 
 implementation of Dialog message is below
 
@@ -1592,7 +1578,7 @@ We need to create a AlertDialog by passing the activity context not application 
 4. `setPositiveButton:` will set the positive button
 5. in the end we need to use `.show()` method
 6. `dialogInterface.cancel()` to close the dialog
-6. `alert.setCancelable(false):` So that it can't get canceled with back button.
+7. `alert.setCancelable(false):` So that it can't get canceled with back button.
 
 # List and Views
 
@@ -1612,7 +1598,7 @@ ListView is kind of a scrollable view which can contain many elements. To add el
         app:layout_constraintTop_toTopOf="parent" />
 ```
 
-This is the way to set ListView. 
+This is the way to set ListView.
 
 **Creating adapter for ListView**
 
@@ -1642,13 +1628,9 @@ list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 });
 ```
 
- In above method the over-ridden method **onItemClick**, adapterView is AdapterView, and value i represents the position of the clicked item. So with `adapterView.getItemAtPosition(i)` will return the item itself.
-
-
+In above method the over-ridden method **onItemClick**, adapterView is AdapterView, and value i represents the position of the clicked item. So with `adapterView.getItemAtPosition(i)` will return the item itself.
 
 ## Recycler View
-
-Most of the time Recycler View is going to be used with CardView because of some very good properties of CardView like corner radius, background etc.
 
 Here we need to create a design format for elements in RecyclerView, which will be another layout file containing some xml code.
 
@@ -1731,7 +1713,7 @@ Here we need to create a design format for elements in RecyclerView, which will 
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
- Above design contains a Constraint layout which contains a **CardView** again containing a Constraint layout. Now that inner Constraint layout contains some other layouts as **ImageView, TextView**. 
+Above design contains a Constraint layout which contains a **CardView** again containing a Constraint layout. Now that inner Constraint layout contains some other layouts as **ImageView, TextView**.
 
 **activity_main.xml** (only **RecyclerView** tag shown here)
 
@@ -1755,15 +1737,16 @@ Now rest of the work lies in the java part.
 
 1. Create data fields for data to be filled in different elements of CardView i.e. Images, Strings
 2. Create a RecyclerView object pointing to RecyclerView with `findViewById(R.id.recycler)`
-3. Create a new class for a Adapter to Recycler extending `RecyclerView.Adapter <RecyclerAdapter.CountryViewHolder>` 
+3. Create a new class for a Adapter to Recycler extending `RecyclerView.Adapter <RecyclerAdapter.CountryViewHolder>`
 4. Create a constructor for the class taking context as context may be a requirement in different parts of the code
 5. Now create a inner class `public class CountryViewHolder extends RecyclerView.ViewHolder`
+
    1. Create super constructor. itemView in `super(itemView)` will be a view pointing to the view holding custom_toast layout So this should be used to modify elements in the custom_toast.
 
-6. Implement all the abstract methods 
+6. Implement all the abstract methods
    1. `public int getItemCount()`,
    2. `public CountryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)`
-   3.  `public void onBindViewHolder(@NonNull CountryViewHolder holder, int position)`
+   3. `public void onBindViewHolder(@NonNull CountryViewHolder holder, int position)`
 7. `getItemCount` will simply give the number of element to be created for RecyclerView
 8. `onCreateViewHolder` will create a View for Recycler elements, which is done with LayoutInflater and this View will be returned from this method. This is where we attach `custom_card.xml` to the recyclerView elements
 9. `onBindViewHolder` is used to modify the elements in recyclerView i.e. setting or modifying textViews, ImageViews, Buttons etc.
@@ -1906,11 +1889,9 @@ public class RecyclerAdapter extends  RecyclerView.Adapter<RecyclerAdapter.Count
 }
 ```
 
-
-
 ## GridView
 
-This will add the elements in vertical and horizontally without any big effort. 
+This will add the elements in vertical and horizontally without any big effort.
 
 **xml code for activity_main**
 
@@ -1949,7 +1930,7 @@ This will add the elements in vertical and horizontally without any big effort.
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
- Now we need to define a custom layout i.e. `grid_element` here to define element layout in grid
+Now we need to define a custom layout i.e. `grid_element` here to define element layout in grid
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -2073,8 +2054,6 @@ public class MainActivity extends AppCompatActivity{
 }
 ```
 
-
-
 ## ScrollView
 
 This will add the ability of scrolling in a view. To implement this on a Layout just wrap the target layout in ScrollView like below.
@@ -2108,11 +2087,11 @@ This will add the ability of scrolling in a view. To implement this on a Layout 
 
 **Like ScrollView Horizontal ScrollView is also a thing which can be implemented like ScrollView**. We just have to wrap the Layout with `HorizontalScrollView.`
 
-To scroll the elements to the right we can run 
+To scroll the elements to the right we can run
 
 - `binding.scroll.fullScroll(HorizontalScrollView.FOCUS_RIGHT)`
-- if view is not scrolling to the last element it maybe because layout isn't done building itself and scrollView scroll itself. This can be resolved with a delay with `binding.scroll.postDelayed(() -> binding.scroll.fullScroll(HorizontalScrollView.FOCUS_RIGHT), 100);` 
-- Above method will add a delay of particular time in the scrolling but we can simply put the **Right Scroll** to start after current iteration of UI Loop with `binding.scroll.post(() -> binding.scroll.fullScroll(HorizontalScrollView.FOCUS_RIGHT));` 
+- if view is not scrolling to the last element it maybe because layout isn't done building itself and scrollView scroll itself. This can be resolved with a delay with `binding.scroll.postDelayed(() -> binding.scroll.fullScroll(HorizontalScrollView.FOCUS_RIGHT), 100);`
+- Above method will add a delay of particular time in the scrolling but we can simply put the **Right Scroll** to start after current iteration of UI Loop with `binding.scroll.post(() -> binding.scroll.fullScroll(HorizontalScrollView.FOCUS_RIGHT));`
 - Use `android:fillViewport="true"` to strech the ScrollView's contents.
 
 ## WebView
@@ -2123,7 +2102,7 @@ WebViews are the views which can load an url in allowed space in the application
 public class MainActivity extends AppCompatActivity {
 
     WebView webView = new WebView(getBaseContext());
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -2205,7 +2184,7 @@ Or one can create a layout with some Buttons or EditTexts in it as below one.
   </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
-Now in java code attach Views from `main_activity`. 
+Now in java code attach Views from `main_activity`.
 
 1. Before doing anything just **give Internet permission** to the application from manifest file with
 
@@ -2285,8 +2264,6 @@ public class MainActivity extends AppCompatActivity {
 
 If we press back button our application will close if we didn't modified the `onBackPressed` method.
 
-
-
 ## GridView
 
 This is similar to Recycler View but it can have columns too. **As per official developer android website:** A view that shows items in two-dimensional scrolling grid. The items in the grid come from the `ListAdapter` associated with this view.
@@ -2313,7 +2290,7 @@ This is similar to Recycler View but it can have columns too. **As per official 
 1. `numsColumns` will set the number of columns in the grid. If there is no particular number we can always set for gridView to set those flexibly with `android:numsColumns:"autofit"` or if we have a number we can directly set it to 3,4 etc.
 2. `horizontalSpacing` will set the spacing between columns and `verticalSpacing` will set the the spacing between rows.
 3. `stretchMode` defines how columns should stretch to fill empty space if any.
-4. Set `listSelector` to transparent, So on clicking it should not show any effects, in case we are defining our custom click effects. 
+4. Set `listSelector` to transparent, So on clicking it should not show any effects, in case we are defining our custom click effects.
 
 **To Connect data to the GridView, we need to create an Adapter as we needed in Recycler**
 
@@ -2321,8 +2298,6 @@ This is similar to Recycler View but it can have columns too. **As per official 
 2. Set `getCount's` return value as data length or array size we are showing content from.
 3. Now we need to create view from layout file which can be done with LayoutInflater and this needs to be done in `getView` method.
 4. Now create the adapter in Activity which contains the GridView and set it with `gridView.setAdapter(new MyCustomAdapter());`
-
-
 
 **Adapter Class**
 
@@ -2386,8 +2361,6 @@ binding.gridNumbers.setOnItemClickListener(((parent, view, position, id) ->
                                      Toast.LENGTH_SHORT).show()                                          ));
 ```
 
-
-
 ## GridLayout
 
 GridLayout is similar to GridView visually but to in GridLayout we have to define every element seprately unlike gridView.
@@ -2400,8 +2373,6 @@ GridLayout is similar to GridView visually but to in GridLayout we have to defin
 - `layout_rowWeight` will specify space allowed to the element in a Row
 - `layout_rowSpan` will specify how many rows given element can capture. (This can be used to show a button with higher importance like = button in some calculators)
 - `layout_columnSpan` will specify how many columns given element can capture. (This is similar to `layout_rowSpan` but will increase width of the element)
-
-
 
 ```xml
 <GridLayout
@@ -2453,26 +2424,22 @@ GridLayout is similar to GridView visually but to in GridLayout we have to defin
 </GridLayout>
 ```
 
-
-
-
-
 # Components and LifeCycles
 
 ## Application Lifecycle
 
 Application has a lifecycle itself. When Application is lauched it will call `onCreate()` method followed by many other method calls for app to work properly
 
-- **On lauching an app** after `onCreate`, `onStart` and `onResume` methods will be called which will keep the activity running. 
+- **On lauching an app** after `onCreate`, `onStart` and `onResume` methods will be called which will keep the activity running.
 - **On Switching Activity** Application will call `onPause` method will be called, when user gets back to the current activity it will call `onResume` again.
-- **Putting the Application in background** will call `onStop` method and when user gets back to the application itself `onRestart` method will be called followed by `onStart` and `onResume`  
+- **Putting the Application in background** will call `onStop` method and when user gets back to the application itself `onRestart` method will be called followed by `onStart` and `onResume`
 - **On closing the app** will call `onDestroy` method.
 
 These methods can be used in the `MainActivity.java` class like onCreate
 
 ```java
 public class MainActivity extends AppCompatActivity {
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -2522,7 +2489,7 @@ These methods can be used to save any work during various stages of apps like go
 
 ## Activity Lifecycle
 
-1st activity will launch by calling these in order `onCreate(), onStart(), onResume()` when 2nd Activity will be called 1st activity will goes to a pause and will call `onPause()`. Now 2nd activity will start and call these in order `onCreate(), onStart(), onResume()`.  When `onResume()` will be called for 2nd activity it will stop the 1st activity by calling `onStop()` on 1st activity.
+1st activity will launch by calling these in order `onCreate(), onStart(), onResume()` when 2nd Activity will be called 1st activity will goes to a pause and will call `onPause()`. Now 2nd activity will start and call these in order `onCreate(), onStart(), onResume()`. When `onResume()` will be called for 2nd activity it will stop the 1st activity by calling `onStop()` on 1st activity.
 
 One can test this by creating another activity and calling it wil below code.
 
@@ -2553,14 +2520,12 @@ Change Dark Mode
 
 ```java
 toggle.setOnCheckedChangeListener((compoundButton, isChecked) -> {
-    if (isChecked) 
+    if (isChecked)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-    else 
+    else
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 });
 ```
-
-
 
 ## Fragment LifeCycle
 
@@ -2586,7 +2551,7 @@ activity_main.xml (only FrameLayout)
 
 create layouts and classes for different fragments. like below
 
-A fragment java class will look like below 
+A fragment java class will look like below
 
 ```java
 public class FirstFragment extends Fragment {
@@ -2600,7 +2565,7 @@ public class FirstFragment extends Fragment {
 }
 ```
 
-It may contain other methods as per its lifecycle and other methods. **onCreateView** method is important to override as that is the one creating the view for fragment. We also need to create a layout file by the name as passed to inflater (**fragment_first** here.  To use this or create fragment in FrameLayout we have to create the FragmentManager in main activity as below 
+It may contain other methods as per its lifecycle and other methods. **onCreateView** method is important to override as that is the one creating the view for fragment. We also need to create a layout file by the name as passed to inflater (**fragment_first** here. To use this or create fragment in FrameLayout we have to create the FragmentManager in main activity as below
 
 ```java
 private void replace(Fragment fragment) {
@@ -2613,11 +2578,9 @@ private void replace(Fragment fragment) {
 
 With replace method one can replace the fragment in FrameLayout.
 
-When a fragment is created it will call these functions in order `onAttach, onCreate, onCreatView, onStart, onResume` and this will keep running the fragment. When a fragment is killed it will call these function in order again `onPause, onStop, onDestroyView, onDestroy, onDeattach`. 
+When a fragment is created it will call these functions in order `onAttach, onCreate, onCreatView, onStart, onResume` and this will keep running the fragment. When a fragment is killed it will call these function in order again `onPause, onStop, onDestroyView, onDestroy, onDeattach`.
 
 ### fragments
-
-
 
 ## Services
 
@@ -2685,13 +2648,11 @@ public class SomeService extends Service {
 }
 ```
 
-While starting the service it will call these methods in order `onCreate, onStartCommand` . If one wants to stop the service `onDestroy` will be called. 
-
-
+While starting the service it will call these methods in order `onCreate, onStartCommand` . If one wants to stop the service `onDestroy` will be called.
 
 ## Broadcast Receiver
 
-Broadcast receiver is a way for Application and Operating system to interact on different events. If an application wants an info related to something it needs to be subscribed to that service. For e.g. If application is subscribed to  Battery low service, Broadcaster will broadcast when battery is low and send the a message to all the subscribed applications. Similar warnings can be issued for various other tasks (i.e. Airplane Mode, Wifi State, Charging etc.).
+Broadcast receiver is a way for Application and Operating system to interact on different events. If an application wants an info related to something it needs to be subscribed to that service. For e.g. If application is subscribed to Battery low service, Broadcaster will broadcast when battery is low and send the a message to all the subscribed applications. Similar warnings can be issued for various other tasks (i.e. Airplane Mode, Wifi State, Charging etc.).
 
 When a broadcast is sent, the system automatically routes the broadcast to apps that have subscribed to receive that particular type of broadcast.
 
@@ -2699,7 +2660,7 @@ Broadcast Messages can be used between 2 applications but mostly it is used in b
 
 **From API level 26 (Orio)** BroadCast Reciver must be created in java class not manifest file. and for below API Levels create it in the Manifest file.
 
-In Manifest file add 
+In Manifest file add
 
 ```xml
 <receiver android:name=".Broadcast"
@@ -2711,7 +2672,7 @@ In Manifest file add
 </receiver>
 ```
 
- where `.Broadcast` is the name of the BroadCast receiver class code for which is given below
+where `.Broadcast` is the name of the BroadCast receiver class code for which is given below
 
 ```java
 public class Broadcast extends BroadcastReceiver {
@@ -2722,21 +2683,21 @@ public class Broadcast extends BroadcastReceiver {
 }
 ```
 
-while sending a Braodcast message system also sends a boolean value which can be fetched with 
+while sending a Braodcast message system also sends a boolean value which can be fetched with
 
 ```java
 boolean isPlaneMode = intent.getBooleanExtra("state", false);
 ```
 
-on isPlaneMode true device will in Airplane mode. 
+on isPlaneMode true device will in Airplane mode.
 
 **These type of receivers which are defined in manifest file are called `context register receivers `.**
 
-Nothing different we just need to remove the BroadCast from Manifest file and than declare it in `MainActivity.java` file. We need to register the BroadCaster in `onStart` method and unregister in `onStop` method because if we create it in `onCreate` method, it will receive the broadcast when it is in background if app is not distroyed. So this is how one should do it 
+Nothing different we just need to remove the BroadCast from Manifest file and than declare it in `MainActivity.java` file. We need to register the BroadCaster in `onStart` method and unregister in `onStop` method because if we create it in `onCreate` method, it will receive the broadcast when it is in background if app is not distroyed. So this is how one should do it
 
 ```java
 public class MainActivity extends AppCompatActivity {
-	
+
     // Broadcast is the class defined above
     Broadcast broad = new Broadcast();
 
@@ -2763,8 +2724,6 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-
-
 ### Checking Internet Connection with BroadCast Receiver
 
 `InternetStatus` class will check if internet is connected or not.
@@ -2786,7 +2745,7 @@ public class InternetStatus {
 }
 ```
 
-`InternetReceiver` class will extends `BroadcastReceiver` and will be activated whenever **Connection change is received**.  To know the connectivity status it will use `InternetStatus` class (defined above). 
+`InternetReceiver` class will extends `BroadcastReceiver` and will be activated whenever **Connection change is received**. To know the connectivity status it will use `InternetStatus` class (defined above).
 
 **NOTE:- INSTEAD OF CREATING A FULLY NEW CLASS ONE CAN ALSO CREATE A PRIVATE METHOD IN BELOW CLASS TO CHECK INTERNET STATUS**
 
@@ -2833,8 +2792,6 @@ public class MainActivity extends AppCompatActivity{
     }
 }
 ```
-
-
 
 ## Intent
 
@@ -2976,15 +2933,13 @@ Here using Intent we are switching to 2nd Activity from 1st Activity.
 
 We can send data from one activity to another activity using intent which we are actually doing in above code. In `MainActivity.java`, we are using `intent.putExtra("UserName", value);` here String UserName will act like a key to a value which we can extract in another activity by using the **UserName** value with `intent.getStringExtra("UserName")`
 
-
-
 ## Shared Preferences
 
-These are used to save data, these will keep data even if application is closed. These can be used to keep previous score in a game. 
+These are used to save data, these will keep data even if application is closed. These can be used to keep previous score in a game.
 
-- To save a value one must create a SharedPrefrences object with `SharedPrefrences sharedPref = getSharedPrefrences(String:Name, MODE_PRIVATE)`; 
+- To save a value one must create a SharedPrefrences object with `SharedPrefrences sharedPref = getSharedPrefrences(String:Name, MODE_PRIVATE)`;
 - To put data in SharedPrefrences one must use Editor. `SharedPrefrences.Editor = editor.putString("Key", "value")`
-- now to commit changes one can use `editor.commit`  but `editor.apply()` is preffred as it will do the same work but in background.
+- now to commit changes one can use `editor.commit` but `editor.apply()` is preffred as it will do the same work but in background.
 
 A simple app is below which will save values when **save** button is pressed and retrieve those when another button is pressed
 
@@ -3054,7 +3009,7 @@ A simple app is below which will save values when **save** button is pressed and
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
-Below is the MainActivity.java file 
+Below is the MainActivity.java file
 
 ```java
 package com.redheadhammer.a0_another;
@@ -3112,11 +3067,9 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-
-
 # Reading and Writing to device memory
 
-This Class can be used to read and write in a file 
+This Class can be used to read and write in a file
 
 ```java
 
@@ -3159,13 +3112,11 @@ public class FileHelper {
 
 File types can be changed according to requirement like from `ArrayList<String> to Tree` or anything else. Read and write function can be modified according to the input type.
 
-
-
 # Splash Screen (Launch Screen)
 
 ### 1. Activity Based
 
-This method uses a specific activity for a flash screen. 
+This method uses a specific activity for a flash screen.
 
 1. Create a splash Activity and add a layout to it
 2. Create Animation Files if required
@@ -3208,8 +3159,6 @@ This method uses a specific activity for a flash screen.
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
-
-
 **ImageView Rotate Animation**
 
 ```xml
@@ -3237,8 +3186,6 @@ This method uses a specific activity for a flash screen.
 </set>
 ```
 
-
-
 **TextView Rotate Animation**
 
 ```xml
@@ -3252,8 +3199,6 @@ This method uses a specific activity for a flash screen.
 
 </set>
 ```
-
-
 
 **Java File to Attach Animations to Views**
 
@@ -3297,8 +3242,6 @@ public class SplashActivity extends AppCompatActivity {
 }
 ```
 
-
-
 ### 2. Theme Based
 
 Using this method we don't create any new activity but a theme to use as launch screen. A custom drawable vector file can be used as background. **This method may fail to show a background drawable in some android devices**
@@ -3306,10 +3249,8 @@ Using this method we don't create any new activity but a theme to use as launch 
 1. Save a vector file in drawable folder to be shown as splash screen Icon.
 2. Create a new drawable file with **layer-list** tag. Set vector file from 1st step as drawable
 3. Create a new theme in themes.xml and set `android:windowBackground` as splash drawable created in 2nd step
-4. Set  theme for the MainActivity as the custom theme created in step 3
-5. change the theme before setting content in mainActivity with `setTheme(R.style.AppTheme);` 
-
-
+4. Set theme for the MainActivity as the custom theme created in step 3
+5. change the theme before setting content in mainActivity with `setTheme(R.style.AppTheme);`
 
 **background drawable from step 2**
 
@@ -3348,17 +3289,9 @@ protected void onCreate(Bundle savedInstanceState) {
     setContentView(R.layout.activity_main);
 ```
 
-
-
-Some delay can be added to splash screen by adding some sleep before changing theme again. 
-
-
+Some delay can be added to splash screen by adding some sleep before changing theme again.
 
 ### 3. Splash Screen api
-
-
-
-
 
 # Sending Data between Screens
 
@@ -3387,16 +3320,14 @@ binding.value3.setText(String.valueof(intent.getIntExtra("VALUE3", 23)))
 
 In case we are passing values like array or String we don't have to pass a default value but in other cases like char, int, boolean we need to pass a default value in case we don't get any value with passed tag.
 
-
-
 ### 2. Activity to Fragment
 
 Like Data sharing between Activity to Activity we use **Intent**, we use **Bundle** to share data between Activity to Fragments.
 
-1. Create a new instance of **Bundle** class. 
+1. Create a new instance of **Bundle** class.
 2. Save value to bundle instance with `bundle.putString("TAG", value)`
 3. Create the instance of fragment to which data is going to be passed.
-4. Pass bundle's instance as argument to `fragObj.setArguments(bundle)` 
+4. Pass bundle's instance as argument to `fragObj.setArguments(bundle)`
 5. Now in Fragment class get bundle using `Bundle bundle = getArguments`
 6. Now one can get the passed value with `bundle.getString("TAG", "Default_value");`
 
@@ -3414,8 +3345,6 @@ FragmentTransaction transaction = manager.beginTransaction();
 transaction.replace(R.id.frameLayout, frag).commit();
 ```
 
-
-
 **Code in Fragment**
 
 ```java
@@ -3424,8 +3353,6 @@ assert (bundle != null);
 String value = bundle.getString("VALUE", "Something");
 binding.textView.setText(value);
 ```
-
-
 
 ### 3. Fragment to Activity
 
@@ -3451,8 +3378,6 @@ protected void getData(String value) {
     binding.textView.setText(value);
 }
 ```
-
-
 
 ### 4. Fragment to Fragment
 
@@ -3485,4 +3410,3 @@ assert (bundle != null);
 String value = bundle.getString("VALUE", "Something");
 binding.textView.setText(value);
 ```
-

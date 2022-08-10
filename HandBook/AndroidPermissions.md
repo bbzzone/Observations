@@ -92,6 +92,27 @@ One more important function is `shouldShowRequestPermissionRationale(String perm
 
 `requestPermissions` will make a callback to `onRequestPermissionsResult`. 
 
+**Handle user responses**
+
+This can be done by **Overriding** *onRequestPermissionResult* in Activity which will get a callback automatically from `requestPermissions`. There we can handle user response with the logic below
+
+```java
+@Override
+public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    if (requestCode == 0) {..do this..}
+    else if (requestCode == 1){
+        if (grantResults.length > 0) {
+            for (int i = 0; i < grantResults.length; i++) {
+                Log.d(TAG, "onRequestPermissionsResult: " + permissions[i] + ": " + grantResults[i]);
+            }
+        }
+    }
+}
+```
+
+In above function String[] permission will have all the permission which were requested in called requestCode (This is when requestCode comes handy). Corresponding indeces in grantResult integer array will be results for permissions (0 for GRANTED and -1 for DENIED).
+
 ### Recommended way for Runtime Permissions
 
 To request single permission use `RequestPermission` and for multiple permissions use `RequestMultiplePermissions` 
