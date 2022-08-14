@@ -40,7 +40,7 @@ Many runtime permissions access *private user data*, a special type of restricte
 
 
 
-### Determine whether permission is already granted or not
+### Check Permission status
 
 This can be done with `checkSelfPermission(String permission)` method from and Activity or better to use `ContextCompat.checkSelfPermission(Context context, String permission)`. To check for a permission below code can be used
 
@@ -104,7 +104,9 @@ public void onRequestPermissionsResult(int requestCode, @NonNull String[] permis
     else if (requestCode == 1){
         if (grantResults.length > 0) {
             for (int i = 0; i < grantResults.length; i++) {
-                Log.d(TAG, "onRequestPermissionsResult: " + permissions[i] + ": " + grantResults[i]);
+                Log.d(TAG, "onRequestPermissionsResult: " 
+                      + permissions[i] + ": " 
+                      + grantResults[i]);
             }
         }
     }

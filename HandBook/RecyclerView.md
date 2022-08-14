@@ -221,6 +221,20 @@ There are many methods for scroll in RecyclerView but these are few commonly use
 
 
 
+#### Adding divider between elements
+
+- default divider -> `binding.recycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));`
+
+- custom divider -> 
+
+  - ```java
+    DividerItemDecoration decoration = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
+    decoration.setDrawable(R.id.custom_drawable);
+    binding.recycler.addItemDecoration(decoration);
+    ```
+
+
+
 ### Adding getPostion/setOnItemClickListener
 
 There are few ways to add setOnItemClickListener but all can be wrapped in same logic. RecyclerView is a Container which contains various views inside it. So to add a click listener to a single item, we need to define click listener for each item. That is only possible in ViewHolder class.

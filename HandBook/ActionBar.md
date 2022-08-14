@@ -30,6 +30,27 @@ setContentView(binding.getRoot());
 
 
 
+#### Change text color
+
+Add below line to your themes
+
+`<item name="android:actionMenuTextColor">@color/your_color</item>`. If it fails than use a spanable string.
+
+```java
+@Override
+public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    inflater.inflate(R.menu.your_menu, menu);
+
+    int positionOfMenuItem = 0; // or whatever...
+    MenuItem item = menu.getItem(positionOfMenuItem);
+    SpannableString s = new SpannableString("My red MenuItem");
+    s.setSpan(new ForegroundColorSpan(Color.RED), 0, s.length(), 0);
+    item.setTitle(s);
+}
+```
+
+
+
 ## Code
 
 [^1]:menu_items code
