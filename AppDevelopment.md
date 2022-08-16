@@ -2580,7 +2580,7 @@ With replace method one can replace the fragment in FrameLayout.
 
 When a fragment is created it will call these functions in order `onAttach, onCreate, onCreatView, onStart, onResume` and this will keep running the fragment. When a fragment is killed it will call these function in order again `onPause, onStop, onDestroyView, onDestroy, onDeattach`.
 
-### fragments
+
 
 ## Services
 
@@ -2588,14 +2588,14 @@ It is android component that works in background and can be helpful for long run
 
 3 types of services in Android
 
-- **Forground Service**
-- **BackGround Services**
-- **Bound Service**
+- **Forground Service** (User can see the process with notifications)
+- **BackGround Services** (A background image compressing service without user knowledge)
+- **Bound Service**(Service bound with the component which starts it, if component dies service dies like a Music Player application).
 
 There are 2 types of **Service Classes**
 
-- **Standard Service Class** (This will use the same thread as the application so may affect app performance)
-- **Intent Service Class** (Will extends )
+- **Standard Service Class** (This will use the main thread as the application so may affect app performance)
+- **Intent Service Class** (Will extends IntentService) Now deprecated use **`JobIntentService`**
 
 We need to add service class to **Manifest file** for it to work properly. `<service android:name=".SomeService"/>` where SomeService is the class name. Remeber to add `<service>` tag in `<application>` tag.
 
@@ -2636,7 +2636,9 @@ public class SomeService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.i("INFO", "onStart");
-//        stopSelf();
+        // stop self method will stop the service automatically when 
+        // service is done with it's task.
+        stopSelf(); 
         return super.onStartCommand(intent, flags, startId);
     }
 
