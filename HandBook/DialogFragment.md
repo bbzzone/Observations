@@ -13,11 +13,11 @@ A fragment that displays a dialog window, floating on top of its activity's wind
 5. Now in required Activity create a logic to launch the dialog i.e. with a button press.[^3]
 6. Use `dialogFragment.showNow()` to show the dialog. `show()` can also be used but it is asynchronous. 
 
-
+**Notes**:-
 
 **By using Tag of DialogFragment, we can use it anywhere in our application using `mFragmentDialog = findFragmentByTag("MyDialog")`**
 
-
+**If using CardView as parent view for cardView with rounded corners, when called dialog will create a rectangular background for itself and to remove those corners we have to set dialog background to transparent with `Objects.requireNonNull(getDialog()).getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));`
 
 ## More
 
