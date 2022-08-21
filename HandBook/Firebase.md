@@ -268,6 +268,93 @@ firebaseAuth.signInWithCredential(credential)
 
 
 
+### Sign In with Google
+
+1. Create a new `GoogleSignInOptions` object by using builder.
+   1. set requestIdToken by getting its value from generated res folders or with `getString (R.string.default_web_client_id)`
+   2. requestEmail will be used to give user options to select an email.
+2. create a `GoogleSignInClient` with `GoogleSignIn.getClient(options, googleSignInOptionsObj)`
+3. Now we have to start an implicit activity for user to select an email from list of emails available on phone.
+4. Our ultimate goal here is to login with credentials for which we need `GoogleSignInAccount` to get credentials
+5. Now in Intent from 3rd step get `Task<GoogleSignInAccount>` using `GoogleSignIn.getSignedInAccountFromIntent(data)`. And from this data get the `GoogleSignInAccount`
+6. Now using `GoogleSignInAccount` create `AuthCredential` now use `FirebaseAuth` object to login using `signInWithCredential`
+
+**Create GoogleSignInOptions object**
+
+```java
+GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+    //                .requestIdToken("259246650605-dve2kpfb0496i01i42sshc52ej4ntr22.apps.googleusercontent.com")
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()     // this will ask user to choose an email
+                .build();
+
+// Create a signInClient
+GoogleSignInClient client = GoogleSignIn.getClient(this, options);
+
+// start intent to make user select a google account.
+Intent signInIntent = client.getSignInIntent();
+googleSignInResult.launch(signInIntent);
+```
+
+**SignInIntent Launcher**
+
+```java
+googleSignInResult = registerForActivityResult(
+    new ActivityResultContracts.StartActivityForResult(),
+    new ActivityResultCallback<ActivityResult>() {
+        @Override
+        public void onActivityResult(ActivityResult result) {
+            int resultCode = result.getResultCode();
+            Intent data = result.getData();
+            if (resultCode == RESULT_OK && data != null) {
+                Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+                try {
+                    GoogleSignInAccount account = task.getResult(ApiException.class);
+                    // Custom function defined below
+                    getDeviceIdToken(account);
+                } catch (ApiException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+    });
+```
+
+**getDeviceIdToken function**
+
+```java
+private void getDeviceIdToken(GoogleSignInAccount account) {
+    AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+    firebaseAuth.signInWithCredential(credential)
+        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(LogIn.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LogIn.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                    // FirebaseUser user = firebaseAuth.getCurrentUser();
+                    // by getting user using above method we can perform
+                    // many actions on user like getting email, profile image
+                    // set on google account, name etc.
+                } else {
+                    Toast.makeText(LogIn.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+}
+```
+
+
+
+
+
+
+
+
+
 ## LogOut
 
 Just a simple command will do it for us: `FirebaseAuth.getInstance().signOut();`  
