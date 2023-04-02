@@ -313,7 +313,7 @@ Assignment operators are used to assign a value to a variable, but these can be 
 
 - . (Structure reference)
 
-## 
+
 
 ## keywords in C
 
@@ -339,7 +339,7 @@ There are many keywords in c some of them are below
 
 - volatile (declaring a variable might be modified elsewhere)
 
-## 
+
 
 ## Syntax Structure
 
@@ -440,11 +440,10 @@ typedef unsigned char byte;
 **struct**
 
 ```c
-/*
 struct NAME {
     ELEMENTS;
 } [VARIABLE_NAME]
-*/
+
 // Struct with typedef
 typedef struct [STRUCT_NAME] {
     ELEMENTS;
@@ -581,7 +580,7 @@ int main(int argc, char* args[]){
 
 This is similar to for loop but it is required to manually set the increment and initializing the variable 
 
-## 
+
 
 ## Switch
 

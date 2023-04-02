@@ -4,11 +4,15 @@
 
 Arrays is a class which contain some methods which can be useful at times. **Most of these methods are applicable on primitive types**
 
-- `Arrays.asList(new int[] {1,2,3,4,5})`
+### Convert Array to List
 
+- `Arrays.asList(new int[] {1,2,3,4,5})`
 - **Binary Search**
 
-  - `static int binraySearch(int[] array, int key)`
+-  below methods belong to `Arrays` class.
+
+  - `static int binarySearch(int[] array, int key)`
+
   - `static int binarySearch(int[] array, int fromIndex, int toIndex, int key)`
 
 - **Copying**
@@ -70,7 +74,7 @@ Arrays is a class which contain some methods which can be useful at times. **Mos
   - add (int index, element) // to insert a specific element at a given index
   - addAll (Collection C) // to append all the elements from Collection C
   - addAll (int index, Collection C) // append all the element from Collection to ArrayList from passed index.
-  - set(int index, E element) // replace the element at given index with given element
+  - set(int index, E element) // replace the element at given index with given element  O(1)
   - clear() // empty the linked list
   - clone() // return a shallow copy of the ArrayList
 
@@ -184,3 +188,101 @@ Arrays is a class which contain some methods which can be useful at times. **Mos
 
   - toArray();
   - toString();
+
+
+
+## Streams
+
+Introduced in Java 8, the Stream API is used to process collections of objects. A stream is a sequence of objects that supports various methods which can be pipelined to produce the desired result. **Stream doesn't modify the list it is getting processed on**.
+
+**Intermediate operations on Streams**
+
+1. **Map :-**
+
+```java
+// map
+List<Integer> a = {1,2,3};
+List<Integer> square = a.stream().map(x->x*x).collect(Collectors.toList());
+// this will return list of square of elements.
+```
+
+2. **Filter :-**
+
+```java
+List<Integer> a = {1,5,7,8,2,3,6};
+List<Integer> even = a.stream().filter(x->(x&1==0)).collect(Collectors.toList());
+// above method will filter out even values and add them to even list from a
+```
+
+3. **Sorted :-**
+
+```java
+List<Integer> a = {5,2,6,7,3,1,9};
+List<Integer> sorted = a.stream().sorted().collect(Collectors.toList());
+// above method will sort the values of a.
+```
+
+**Terminal Operations**
+
+1. **Collect :-** this method is used to return the result of the intermediate operations performed on the stream. It has various methods which will return the results in list, set, map etc.
+
+```java
+List<Integer> nums = {1,3,5,6};
+List<Integer> add1 = nums.stream().map(x->x+1).collect(Collectors.toSet());
+```
+
+2. **forEach :-** The forEach method is used to iterate through every element of the stream.
+
+```java
+List<Integer> ll = {1,2,3,4};
+ll.stream().forEach(x->System.out.print(x*7));
+```
+
+3. **reduce :-** The reduce method is used to reduce the elements of a stream to a single value.
+
+```java
+Integer[] arr = { 1, 9, 3, 5, 4, 22, 13 };
+Integer sum = sqr.stream().reduce(0, (ans, i) -> ans + i);
+```
+
+
+
+## ArrayDeque
+
+This DataStructure implents `Queue` and `Deque` Interfaces. ArrayDeque has the ability to push and pop on the both sides of the List.
+
+- **Constructor**
+
+  ```java
+  ArrayDeque<Integer> dq = new ArrayDeque();
+  dq = new ArrayDeque(Collection col);
+  dq = new ArrayDeque(int size);
+  ```
+
+- **Adding elements to queue**
+
+  - dq.add(val) or dq.offer(val)	// will append the value to the end of the list
+  - dq.addFirst(val) or dq.offerFirst(val)   // will add the element in the beggining of the list
+  - dq.addLast(val) or dq.offerLast(val)   // will append the value to the end.
+  - dq.push(val)   // will push the element in the list represented as stack/queue.
+
+- **Enquiry**
+
+  - size() 	// will return the size of queue.
+  - getFirst()
+  - getLast()
+  - isEmpty()
+  - peek(), peekFirst(), peekLast()
+  - contains(val)   // will check wether a particular element is present in the list.
+
+- **Removing elements**
+
+  - remove()   // returns and remove head element
+  - removeFirst()
+  - removeLast()
+  - removeAll(Collection<E> c)
+  - poll(), pollFirst(), pollLast()
+  - pop()
+  - clear()
+
+  
