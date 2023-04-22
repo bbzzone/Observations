@@ -2,10 +2,11 @@
 
 1. [Makefile](#Using-makefile-to-Build)
 2. [Formatted Printing](#Formatted-Printing)
-   
+
    1. [Format Specifiers](#Format-Specifiers-in-C)
-   
+
    2. [Escape Codes](#Escape-Codes)
+
 3. [Using the Debugger](#Using-the-debugger)
 4. [Operators](#Operators-in-C)
 5. [Keywords in C](#keywords-in-C)
@@ -29,22 +30,19 @@
 23. [Meet Duff's Device](#Meet-Duff's-Device)
 24. [Input Output Files](#Input-Output-Files)
 25. [Variable Argument Functions](#Variable-Argument-Functions)
-25. [Logfind](#Logfind)
-26. [Creative and defensive Programming](#Creative-and-defensive-Programming)
-27. [Intermediate Makefiles](#Intermediate-Makefiles)
-27. [Libraries and Linking](#Libraries-and-Linking)
-27. 
+26. [Logfind](#Logfind)
+27. [Creative and defensive Programming](#Creative-and-defensive-Programming)
+28. [Intermediate Makefiles](#Intermediate-Makefiles)
+29. [Libraries and Linking](#Libraries-and-Linking)
+30.
+
 - [Pointers](#Pointers-in-C)
-
-  
-
-  
 
 # Learn C the Hard Way
 
 Due to **UB (Undefined Behaviour)**, a standard set by ANSI (American National Standard Institure), of solid C code, it can disregard everything you have written.
 
-**In C language every string ends with NUL (0 byte)**, but many strings come outside of the program which doesn't ends with NUL and compiler tries to read the end of the string and it causes program to crash. 
+**In C language every string ends with NUL (0 byte)**, but many strings come outside of the program which doesn't ends with NUL and compiler tries to read the end of the string and it causes program to crash.
 
 Below is a simple C code with it's breakdown below
 
@@ -59,16 +57,14 @@ int main(int argc, char *args[]){
 ```
 
 > To compile --> make filename (without .c) will make another file 'filename'
-> 
+>
 > To run --> ./filename will execute the compiled file
 
 1. include is the way to import content of another file to the source file
 
-2. main function has return type of int and is the function which will be executed when program runs. This function takes 2 arguments, *argc ->argument count* and *char of string as arguments* 
+2. main function has return type of int and is the function which will be executed when program runs. This function takes 2 arguments, _argc ->argument count_ and _char of string as arguments_
 
 3. a return from main gives operating system an exit value as UNIX software uses return codes.
-
-
 
 ## Using makefile to Build
 
@@ -78,7 +74,7 @@ Make is ancient tool which knows how to make some type of softwares
 
 ```bash
 $ make code
-$ CFLAGS="-Wall -g" make code 
+$ CFLAGS="-Wall -g" make code
 ```
 
 make code will tell compiler to create a file named code, and to do so it will follow some steps like:-
@@ -89,11 +85,11 @@ make code will tell compiler to create a file named code, and to do so it will f
 
 3. If yes, it will check if make can build .c files
 
-4. if yes then run the command ```cc code.c -o code ```
+4. if yes then run the command `cc code.c -o code `
 
 5. it will create a file named code using cc
 
-The 2nd line **CFLAGS="-Wall" make code** will set environment variable CFLAGS to Wall which stands for *Warning All* (which isn't actually all the warnings possible), and -g in CFLAGS will set the debugging symbol, which is useful while debugging the c code.
+The 2nd line **CFLAGS="-Wall" make code** will set environment variable CFLAGS to Wall which stands for _Warning All_ (which isn't actually all the warnings possible), and -g in CFLAGS will set the debugging symbol, which is useful while debugging the c code.
 
 ##### How actually a makefile is built and made
 
@@ -121,22 +117,22 @@ Save this file with the name Makefile and ensure that consistent tabs are used o
 
 - clean and list are the commands which can be used with make to execute the code corresponding to those
 
-- running **make clean or make list** will execute ***rm -f code or ls -a*** respectively
+- running **make clean or make list** will execute **_rm -f code or ls -a_** respectively
 
 ```makefile
 all: code.c
     code
 ```
 
-- by including above code in makefile will make running **make** to execute ***make code*** , but we need to ensure all is the very 1st target.
+- by including above code in makefile will make running **make** to execute **_make code_** , but we need to ensure all is the very 1st target.
 
-- we can also write ***all: code*** this will do the same work as code is the prerequisite
+- we can also write **_all: code_** this will do the same work as code is the prerequisite
 
-- > man  make    # to learn more about make file
-  > 
+- > man make    # to learn more about make file
+  >
   > man cc            # to learn more about flags used in CFLAGS variable
 
-## 
+##
 
 ## Formatted Printing
 
@@ -167,7 +163,7 @@ in above code printf is using a formatted string and than we are putting variabl
 
 - %x, %X is used for hexa-decimal numbers
 
-- %s is used to specify strings (strings are defined as : *char[] value = "i am string"*)
+- %s is used to specify strings (strings are defined as : _char[] value = "i am string"_)
 
 - %p is used to print any address
 
@@ -182,10 +178,10 @@ int main(){
 
 above code will output:
 
-> $        Responsibility
-> 
+> $     Responsibility
+>
 > $ Responsibility
-> 
+>
 > $        Resp
 
 #### Escape Codes
@@ -202,11 +198,11 @@ above code will output:
 
 ## Using the debugger
 
-There are many tools which can be used as debugger like ***gdb, Valgrind, AddressSanitizer, Lint etc.***
+There are many tools which can be used as debugger like **_gdb, Valgrind, AddressSanitizer, Lint etc._**
 
 ##### GDB (GNU Debugger)
 
-To start gdb for any file run gdb appended with file name in terminal something like below 
+To start gdb for any file run gdb appended with file name in terminal something like below
 
 ```bash
 $ CFLAGS="-Wall -g" make code
@@ -215,14 +211,14 @@ $ gdb ./code
 (gdb) run
 ```
 
-the above code will start the debugger for code file in interactive mode and we can do different things using the commands which gdb provides. like 
+the above code will start the debugger for code file in interactive mode and we can do different things using the commands which gdb provides. like
 
 - run    --> To run the code (will stop at any error)
 
-- bt / backtrace --> To get the stack trace  (line num where debugger is)
+- bt / backtrace --> To get the stack trace (line num where debugger is)
 
 - b / break function `break main` will set a break point at main function.
-  
+
   - running code with run will stop at main function.
 
 - s / step --> next line with stepping into function calls
@@ -231,19 +227,19 @@ the above code will start the debugger for code file in interactive mode and we 
 
 - c / continue --> continue running the program from debugger location
 
-- p / print *expr* --> will print the value of expression *expr*
+- p / print _expr_ --> will print the value of expression _expr_
 
 - clear --> clear a breakpoint (need debugger on that line)
 
 - pwd, cd, make --> works just like in normal shell
 
-- help 
+- help
 
 - shell --> quickly start a shell session.
 
 There are few things which are useful while running the gdb debugger
 
-1. `gdb --batch --ex r --ex bt --ex q ./code` . This will run the debugger on code file while executing run, back trace than quit.  If --batch option isn't used, gdb will 1st list out its information, after that will do the same thing. But to get cleaner output use batch option. **in simple words this command is useful for checking if the code is running fine without doing debugging step by step**
+1. `gdb --batch --ex r --ex bt --ex q ./code` . This will run the debugger on code file while executing run, back trace than quit. If --batch option isn't used, gdb will 1st list out its information, after that will do the same thing. But to get cleaner output use batch option. **in simple words this command is useful for checking if the code is running fine without doing debugging step by step**
 
 2. the above command is similar like how Valgrind works and this is really important when monitoring segment faults.
 
@@ -259,17 +255,17 @@ There is program spling, which works directly on c code and won't check by runni
 
 This is alternative of Valgrind on OS X as it uses clang and clang is a part of OS X.
 
-## 
+##
 
 ## Operators in C
 
 **Arithmetic Operators**
 
-> +, -, *, /, % (Modulo), ++ (Increment), -- (Decrement)
+> +, -, \*, /, % (Modulo), ++ (Increment), -- (Decrement)
 
 **Relation Operators**
 
-> ==, !=, > (greater than), < (less than), >= (greater than equal), <= (less than equal) 
+> ==, !=, > (greater than), < (less than), >= (greater than equal), <= (less than equal)
 
 **Logical Operators**
 
@@ -283,7 +279,7 @@ This is alternative of Valgrind on OS X as it uses clang and clang is a part of 
 
 - ^ (Bitwise XOR)
 
-- ~ (Bitwise one's complement) 
+- ~ (Bitwise one's complement)
 
 - << (Bitwise shift left)
 
@@ -307,13 +303,11 @@ Assignment operators are used to assign a value to a variable, but these can be 
 
 - &k --> address of k
 
-- sizeof() --> get the size of 
+- sizeof() --> get the size of
 
 - \-> (Structure dereference)
 
 - . (Structure reference)
-
-
 
 ## keywords in C
 
@@ -338,8 +332,6 @@ There are many keywords in c some of them are below
 - union (start a union statement)
 
 - volatile (declaring a variable might be modified elsewhere)
-
-
 
 ## Syntax Structure
 
@@ -387,7 +379,7 @@ while (TEST) {
 }
 ```
 
-A loop can use *break and continue* statement
+A loop can use _break and continue_ statement
 
 **do while loop**
 
@@ -460,27 +452,27 @@ union NAME {
 } [VARIABLE_NAME];
 ```
 
-## 
+##
 
 ## Variables and datatypes
 
-- *short* test = 12;
+- _short_ test = 12;
 
-- *int distance = 23;*
+- _int distance = 23;_
 
-- *long* value = 123; or *long* value = 123L;
+- _long_ value = 123; or _long_ value = 123L;
 
-- *float* percent = 65.33F;
+- _float_ percent = 65.33F;
 
-- *double* percent = 83.5234;
+- _double_ percent = 83.5234;
 
-- *bool* value = true; (value can be **true/false**)
-  
-  - 1 and 0 represent true or false in C resp. Unlike python 23 || 15 will return 1 not 23. Similarly 62 && 73 will return 1 not 73 as in python.    
+- _bool_ value = true; (value can be **true/false**)
 
-- *char* A = 'K';
+  - 1 and 0 represent true or false in C resp. Unlike python 23 || 15 will return 1 not 23. Similarly 62 && 73 will return 1 not 73 as in python.
 
-- *char* name[] = "String in C";
+- _char_ A = 'K';
+
+- _char_ name[] = "String in C";
 
 Few things to be noted is that a character is just a number in C like in some other languages. We can use chars in mathematical calculations as they are treated as just some integers here. Number associated with a char is always same and is the ASCII code for that number
 
@@ -490,9 +482,9 @@ int sum = 3 + test;
 printf("sum for char and int is %d percentage: %%", sum);
 ```
 
-*print statement above will print 83 as ASCII value for P is 80*. Another thing to be noted here is that to print a percentage symbol it is required to use 2 percentage symbols as above.
+_print statement above will print 83 as ASCII value for P is 80_. Another thing to be noted here is that to print a percentage symbol it is required to use 2 percentage symbols as above.
 
-**Warning** 
+**Warning**
 
 ```c
 void main(){
@@ -512,7 +504,7 @@ int main(){
 }
 ```
 
-This happened because str is written in read-only memory but *(str + 1) = "k" is trying to modify the content in read only memory that is causing a segmentation fault  
+This happened because str is written in read-only memory but \*(str + 1) = "k" is trying to modify the content in read only memory that is causing a segmentation fault
 
 ## if elseif else statements
 
@@ -536,9 +528,9 @@ int main(int argc, char* args[]){
 ```
 
 > output:
-> 
+>
 > value is 12
-> 
+>
 > value is 0
 
 So as we saw for calculations **true will be treated as 1 and false will be treated as 0**, To pass the arguments while running the code pass them along as in bash
@@ -554,7 +546,7 @@ int main(int argc, char* args[]){
 
     if (k < 10) {
         printf("The value is above 9");
-    }    
+    }
     else if (k >= 10 && k <= 15){
         printf("The value is bet. 10 and 14");
     }
@@ -578,13 +570,11 @@ int main(int argc, char* args[]){
 }
 ```
 
-This is similar to for loop but it is required to manually set the increment and initializing the variable 
-
-
+This is similar to for loop but it is required to manually set the increment and initializing the variable
 
 ## Switch
 
-In C switch statement is actually a jump table. ***in C switch statement will only take expressions which can be converted to int like int itself or char*** 
+In C switch statement is actually a jump table. **_in C switch statement will only take expressions which can be converted to int like int itself or char_**
 
 ```c
 int main(int argc, char* argv[]){
@@ -592,7 +582,7 @@ int main(int argc, char* argv[]){
     switch(letter){
         case 'i':
             printf("this is code");
-            break;    
+            break;
         case 'a':
             printf("this is a");
             break;
@@ -606,13 +596,13 @@ int main(int argc, char* argv[]){
 
 - Compiler will mark the point where switch statement starts lets say Y
 
-- than it will come up with a number for *switch(letter)*, i.e. it will convert letter 'i' into its corresponding ASCII number.
+- than it will come up with a number for _switch(letter)_, i.e. it will convert letter 'i' into its corresponding ASCII number.
 
 - Now compiler will translate each case block to a location in program that is exactly that far away from Y i.e. `case 'a'` will be saved in a location that is Y + a in the program
 
-- it then does the math to figure out where `Y + letter` is located in switch statement, and if it is too far than it adjust it to `Y + default` value 
+- it then does the math to figure out where `Y + letter` is located in switch statement, and if it is too far than it adjust it to `Y + default` value
 
-- now as it knows the location it will jump to that spot and then contiue running, if there is no break it will jump to the next case.  
+- now as it knows the location it will jump to that spot and then contiue running, if there is no break it will jump to the next case.
 
 There are few things which should be kept in mind while comparing data types.
 
@@ -625,11 +615,11 @@ int main(int argc, char* argv[]){
 }
 ```
 
-The above code will throw an error because we are trying to compare an integer with a pointer. Even if we try to compare it with a string it will also give **segmentation fault**. 
+The above code will throw an error because we are trying to compare an integer with a pointer. Even if we try to compare it with a string it will also give **segmentation fault**.
 
 ## Arrays-and-Strings
 
-C stores strings as an char array which ends with *\0 (null byte)* 
+C stores strings as an char array which ends with _\0 (null byte)_
 
 > int array_name[size] = {elements in csv};
 
@@ -659,13 +649,13 @@ By running above code we can make some conclusions
 
 - When each character in urray (char array) is printed only 1st char will be printed in this case 'k' but all other chars are also initialized to '/0' (nul byte), but as /0 is a special character it is not visible.
 
-- We can still modify the elements of array after initializing it. 
+- We can still modify the elements of array after initializing it.
 
 - We can print char array by using string identifier, it will keep printing until it encounter a nul byte (\0)
 
-- Another way to create a string is by using pointers 
+- Another way to create a string is by using pointers
 
-> char *word = "something"; 
+> char \*word = "something";
 
 By creating string like that in c, memory address of very 1st element of the string will be saved on variable name ('word' in this case). By using %s identifier we can print whole string or %c to print characters in string using array indexing (word[2] = 'm').
 
@@ -693,10 +683,8 @@ sscanf(myarray, "%d", &i);
 // with atoi (array to integer)
 char myarray[4] = {'-','1','2','3'};
 int i = atoi(myarray);
-printf("%d\n", i); 
+printf("%d\n", i);
 ```
-
-
 
 ## Sizes and Arrays
 
@@ -727,7 +715,7 @@ printf("size of string %ld", sizeof(string));
 printf("size of char %ld", sizeof(char));
 ```
 
-sizeof is a function which will return the size of anything in bytes, this is important as C has much relation with memory and sizes. 
+sizeof is a function which will return the size of anything in bytes, this is important as C has much relation with memory and sizes.
 
 One more thing which can be noticed is, size of string will be returned as 6 but for stress it will be 4. In case of stress actual size is 4 and returned size is also 4, but for string it is different. The reason being `\0 (nul)` as there is no nul value in string, So C is creating one by itself so size is one more than expected.
 
@@ -738,7 +726,7 @@ Any String is similar to a byte array. By keeping this in mind we can create var
 While writing our main function we are using argument `char *argv[]` which is acutally an array of strings.
 
 ```c
-int main(int argc, char *argv[]){    
+int main(int argc, char *argv[]){
     char *strArray[] = {"something", "testing"};
     printf("%s, %s\n", strArray[0], strArray[1]);
 }
@@ -814,13 +802,13 @@ printf("%d\n", *array); // memory addr of array0[0] --> 100
 printf("%d\n", *array + 1); // mem add of array0[1] --> 104
 ```
 
-To know the value at any address: 
+To know the value at any address:
 
 ```c
 printf("%i\n", *(*array)); // value at addr. 100 = 1
 printf("%i\n", *(*(array + 1))); // value at add 112 = 4
 printf("%i\n", *(*array + 1)) // value at add 104 = 2
-printf("%i\n", *(*(array + 1) + 1); // value at add 116 = 5 
+printf("%i\n", *(*(array + 1) + 1); // value at add 116 = 5
 ```
 
 1. **\*(\*array)** : array is starting add. of array i.e. 100. derefrencing it gives array0 which will give starting add. of array0 i.e. 100 again. Derefrencing it will give value at add. 100, which is 1.
@@ -856,7 +844,7 @@ for (int i = 0; i < 4; i++){
 
 - For part 3, this is different when identifier is a string. There is no need of using derefrence operator with string as identifier. Using derefrence with a string identifier will give an segmentation fault. This is because, a string identifier expects a char[] but it is getting a char or an int here.
 
-- This will return addresses of the array elements and all addresses printed will be in sequence as char will take only 1 byte.   
+- This will return addresses of the array elements and all addresses printed will be in sequence as char will take only 1 byte.
 
 ## Writing and Using Functions
 
@@ -877,7 +865,7 @@ int sum(int array[]){
     int sum = 0;
     for (int i = 0; i < (sizeof(array)/4); i++){
         sum += array[i];
-    }   
+    }
     return sum;
 }
 ```
@@ -907,7 +895,7 @@ In above code a function fun is called in main before it is defined. So compilor
 
 ## Pointers and Dreaded Pointers
 
-A pointer to string array can be defined as `char *(*string)`. 
+A pointer to string array can be defined as `char *(*string)`.
 
 **The pointer lexemes**
 
@@ -919,13 +907,13 @@ A pointer to string array can be defined as `char *(*string)`.
 
 - &value --> address of value.
 
-- type \*ptr = &thing  -->  saving address of thing in ptr.
+- type \*ptr = &thing --> saving address of thing in ptr.
 
 - ptr++ --> incrementing a pointer
 
 ## Struct and Pointers
 
-Struct is a data structure which is simlilar like classes in other languages. struct is kind of a structure where each element have some variables associated with it, like class variables (instance variables). 
+Struct is a data structure which is simlilar like classes in other languages. struct is kind of a structure where each element have some variables associated with it, like class variables (instance variables).
 
 ```c
 #include<stdio.h>
@@ -1131,7 +1119,7 @@ void Database_set(struct Connection *conn, int id, const char *name, const char 
 }
 
 void Database_get(struct Connection *conn, int id) {
-   struct Address *addr = &conn->db->rows[id]; 
+   struct Address *addr = &conn->db->rows[id];
 
    if (addr->set){
         Address_print(addr);
@@ -1212,7 +1200,7 @@ int main(int argc, char *argv[]){
 }
 ```
 
-`#define MAX_DATA 500` will be processed by preprocessor to create constant settings of  MAX_DATA for the entire program. 
+`#define MAX_DATA 500` will be processed by preprocessor to create constant settings of MAX_DATA for the entire program.
 
 Address struct is being created which is a constanct size struct, making it less efficient but easy to read and store. Database struct is also a fixed size struct as it is using only 2 pointers as input.
 
@@ -1234,8 +1222,6 @@ int main(){
 }
 ```
 
-
-
 ## Function Pointers
 
 `int (*addition)(int, int)`. This is the way to declare a function pointer. Function name itself is an address so there is no need to use & to get the address of the function simply name will work i.e. `int (*addition)(int, int) = sum;`. Here sum is a function but word **sum** will be treated as an address.
@@ -1255,9 +1241,9 @@ int main(){
 
 lets suppose sum has a value 0xff123 than addition will also have a value of 0xff123, that's the reason calling addition(2,3) without dereferencing works.
 
-One more thing to note here is that if addition is dereferenced than it will also return the same value i.e. 0xff123. So ***addition(2,3) == \(*addition)(2,3)***. 
+One more thing to note here is that if addition is dereferenced than it will also return the same value i.e. 0xff123. So ***addition(2,3) == \(*addition)(2,3)\***.
 
-as passing a function pointer to another function will look bad, **typedef**  can be used to make it neat. We can use typedef to declare function pointer as a type so that while passing arguments one don't have to go through messy arguments.
+as passing a function pointer to another function will look bad, **typedef** can be used to make it neat. We can use typedef to declare function pointer as a type so that while passing arguments one don't have to go through messy arguments.
 
 ```c
 typedef int (*fun)(int, int);
@@ -1269,7 +1255,7 @@ int sum(int a, int b){
 
 int main(int argc, char *argv[]){
     int array[3] = {1,2,3};
-    fun value = sum; 
+    fun value = sum;
     printf("%p\n", sum);    // suppose 0xfff123
     printf("%p\n", value);  // also print 0xff123
 }
@@ -1277,7 +1263,7 @@ int main(int argc, char *argv[]){
 
 **typedef**
 
-This can be used to define a new type in the program i.e. define a new datatype string which will be simlilar to char\*. 
+This can be used to define a new type in the program i.e. define a new datatype string which will be simlilar to char\*.
 
 ```c
 typedef unsigned int unit;
@@ -1293,7 +1279,7 @@ int main(){
 }
 ```
 
-in above program instead of writing `unsigned int value = 23;` we can use `unit value = 23;` as unit is defined as a unsigned int datatype. Similarly we can use `string` instead of char\* and `Person` instead of `struct Person`. 
+in above program instead of writing `unsigned int value = 23;` we can use `unit value = 23;` as unit is defined as a unsigned int datatype. Similarly we can use `string` instead of char\* and `Person` instead of `struct Person`.
 
 **DIFFERENCE BETWEEN DEFINE AND TYPEDEF**
 
@@ -1319,17 +1305,17 @@ Now when we go to the typedef case there sizeof all the values will be as sizeof
 When C encounters an error it sets variable errno to some value which is defined as `extern int` in errno.h header file. After writing more and more C code one will realise eventually that c code should be written as follows :-
 
 > 1. Call a function
-> 
+>
 > 2. Check if the return value is an error
-> 
+>
 > 3. Clean up all resources as much as you can
-> 
+>
 > 4. Lastly print out an error message to get more info about error.
 
-If Error in a program isn't handled correctly it will die eventually. Author uses some macros to handle exceptions,  **The Debug Macros**.
+If Error in a program isn't handled correctly it will die eventually. Author uses some macros to handle exceptions, **The Debug Macros**.
 
 > HOW THESE MACROS WORK: WORDS BY AUTHOR
-> 
+>
 > It does this by adopting the convention that whenever there’s an error, your
 > function will jump to an error: part of the function that knows how to clean
 > up everything and return an error code. You can use a macro called check to
@@ -1384,28 +1370,28 @@ Below macros are defined with **include guards**.
 #endif
 ```
 
-This simply means if NAME is not defined define it or in case of any problem define OTHERNAME and endif is used to end the if statement. This above code is a defence so that header files will not get defined twice. In case a file is defined twice, when it will be preprocessed it will give declaration for same function or variables twice. As in the end all these files are converted into one big file. It will give  error due to double declaration of some functions. So to prevent this **include guards are used.**
+This simply means if NAME is not defined define it or in case of any problem define OTHERNAME and endif is used to end the if statement. This above code is a defence so that header files will not get defined twice. In case a file is defined twice, when it will be preprocessed it will give declaration for same function or variables twice. As in the end all these files are converted into one big file. It will give error due to double declaration of some functions. So to prevent this **include guards are used.**
 
-- #ifdef NDEBUG 
-  
+- #ifdef NDEBUG
+
   > If your program is compiled with NDEBUG than there will be no debug messages. That's why #define debug(...) is not replaced with anything. else debug(...) will be replaced with fprintf(....)..
 
 - #define debug(M, ...) is very important to notice here. M is injector message.
 
-> This is very less known that one can give multiple arguments to a function with define. This all is possible because of __VA_ARGS\_\_ but this is not supported by all compilers, but this is very useful. Something like this can be used with `stdarg.h`, which has following arguments va_list, va_start, va_end. Function defined for variable arguments will have a structure like this `int add(int num, ...)`. Here 1st argument will be number of arguments which will always be passed automatically and 2nd argument is ... which is also known as **ellipses**. 
+> This is very less known that one can give multiple arguments to a function with define. This all is possible because of \_\_VA_ARGS\_\_ but this is not supported by all compilers, but this is very useful. Something like this can be used with `stdarg.h`, which has following arguments va_list, va_start, va_end. Function defined for variable arguments will have a structure like this `int add(int num, ...)`. Here 1st argument will be number of arguments which will always be passed automatically and 2nd argument is ... which is also known as **ellipses**.
 >
 > 1. We declare a function with ellipses and than create a variable of type va_list i.e. `va_list values` denoting a list of varaibles
 > 2. va_start is used to start accessing values. `va_start(values, num)` Here num is the size of list or number of arguments passed to function.
 > 3. va_arg is used to access a single element from the list. `va_arg(values, int)`. 1st argument is the list of values and 2nd argument is the type of values in list.
 > 4. va_end is used to remove the memory set for the variables `va_end(values)`
 
-- #define clean\_errno() 
+- #define clean_errno()
 
   > it is just a clean version of errno. If errno is 0 than there is no error and it will print None else it will print the errno.
 
-- \_\_FILE\_\_ , \_\_LINE\_\_ , ##\_\_VA\_ARGS\_\_
+- \_\_FILE\_\_ , \_\_LINE\_\_ , ##\_\_VA_ARGS\_\_
 
-  > The use of \_\_VA\_ARGS\_\_ is very important here as in these macro functions (...) part says all the extra arguements it receives will be passed as VA ARGS. Also notice the use of FILE AND LINE. This is useful when someone wants to know the line number and file which caused the error.
+  > The use of \_\_VA_ARGS\_\_ is very important here as in these macro functions (...) part says all the extra arguements it receives will be passed as VA ARGS. Also notice the use of FILE AND LINE. This is useful when someone wants to know the line number and file which caused the error.
 
 - log warn, loginfo, log err
 
@@ -1413,13 +1399,13 @@ This simply means if NAME is not defined define it or in case of any problem def
 
 - check function
 
-  > this macro will check if variable A passed to it is true or not if not it will call log\_err. Similarly check\_mem and check\_debug can be interpreted.
+  > this macro will check if variable A passed to it is true or not if not it will call log_err. Similarly check_mem and check_debug can be interpreted.
 
 adding those all macros to a file i.e. dbg.h and than using that including this file will also add all our defined functions in the file. `#define "dbg.h"`. This is what a header file does. It brings the defination of functions in program.
 
 In all above code there is a statement **goto error**. Here author is using error as a tag to jump onto i.e.
 
-````c
+```c
 int main(){
     FILE *file = open("test.c", "r+");
     char *string = (char*) malloc(50*sizeof(char));
@@ -1427,25 +1413,25 @@ int main(){
     error:
     	puts("You are not important enough for your computer. LOL\n")
 }
-````
+```
 
 check_mem will call check which on not getting memory will jump to error, which is tag defined in the program and will print statement in puts.
 
 #### How C Pre Processor expands macros
 
-`#define log_err(int num, ...) fprintf(stderr, "[ERROR]%s:%d", __FILE__, __LINE__, __VA_ARGS__);`. Here all the values given to log_err will be replaced with __VA_ARGS\_\_. So we can write log_err("Your name %s and age %d\n", name ,age) and it will be converted to `fprintf(stderr, "[ERROR]%s:%d  "Your name %s and age %d\n"", __FILE__, __LINE__, name ,age);` What macros actually do is replace the macro with right hand side of the macro.
+`#define log_err(int num, ...) fprintf(stderr, "[ERROR]%s:%d", __FILE__, __LINE__, __VA_ARGS__);`. Here all the values given to log_err will be replaced with **VA_ARGS\_\_. So we can write log_err("Your name %s and age %d\n", name ,age) and it will be converted to `fprintf(stderr, "[ERROR]%s:%d "Your name %s and age %d\n"", **FILE**, **LINE\_\_, name ,age);` What macros actually do is replace the macro with right hand side of the macro.
 
-Similar thing is happening with check. It is replacing macro with it's defination or right hand side. So this is how macros works. Pre-processor replaces macros with its defination in the code recursively. This can also be done with a function like write but as it will be a function it will have limited scope so there are few thing which one will miss like __FILE\_\_ and \_\_LINE\_\_. 
+Similar thing is happening with check. It is replacing macro with it's defination or right hand side. So this is how macros works. Pre-processor replaces macros with its defination in the code recursively. This can also be done with a function like write but as it will be a function it will have limited scope so there are few thing which one will miss like \_\_FILE\_\_ and \_\_LINE\_\_.
 
-To discard debug messges one can put #define NDEBUG on top of code file or in the Makefile add     -DNDEBUG as a CFLAG. 
+To discard debug messges one can put #define NDEBUG on top of code file or in the Makefile add -DNDEBUG as a CFLAG.
 
-__FUNCTION\_\_ can be used to also print function name in the terminal as \_\_FILE\_\_ or _\_LINE\_\_. 
+\__FUNCTION\_\_ can be used to also print function name in the terminal as \_\_FILE\_\_ or _\_LINE\_\_.
 
 ## Advance Debugging Techniques
 
 One can use debugger to run the code line by line. For a code like below
 
-````c
+```c
 #include <stdio.h>
 //#include "dbg.h"
 #include <assert.h>
@@ -1462,11 +1448,11 @@ int main(int argc, char *argv[]){
     printf("%s:%d\n", __FILE__, __LINE__);
     host(5);
 }
-````
+```
 
 debugger can be used to see how code is working line by line. There are many C debuggers like gdb, lldb etc. To start debugger with a given program one can run `gdb test`. This will run the above program with debugger (test will be executable for the program above).
 
-Setting a break point: `break test.c:8` or `break host`. 
+Setting a break point: `break test.c:8` or `break host`.
 
 a value can be printed with: `print a` or `print k`
 
@@ -1499,7 +1485,7 @@ Breakpoint 2 at 0x1164: file test.c, line 8.
 
 (gdb) run
 
-Starting program: /home/bhavuksharma2202/Workspace/C/test 
+Starting program: /home/bhavuksharma2202/Workspace/C/test
 [Thread debugging using libthread_db enabled]
 Using host libthread_db library "/usr/lib/libthread_db.so.1".
 
@@ -1542,45 +1528,43 @@ To check the max and min value of any data type we can use limits.h header file 
 
 ##### Basic Available Data Types
 
-| Data Type | Description                                                  |
-| --------- | ------------------------------------------------------------ |
-| int       | Stores a normal int usually with a size of 32bit (4bytes)    |
-| double    | Stores a floating point value with a size of 64bit (8bytes)  |
+| Data Type | Description                                                                    |
+| --------- | ------------------------------------------------------------------------------ |
+| int       | Stores a normal int usually with a size of 32bit (4bytes)                      |
+| double    | Stores a floating point value with a size of 64bit (8bytes)                    |
 | float     | Stores a floaing point value with a size half of double usually 32bit (4bytes) |
-| char      | Stores a char value with a size of 8bit (1byte)              |
-| void      | indicated no type and used to say that function returns nothing |
-| enum      | These work as integer but with a given symbolic values       |
+| char      | Stores a char value with a size of 8bit (1byte)                                |
+| void      | indicated no type and used to say that function returns nothing                |
+| enum      | These work as integer but with a given symbolic values                         |
 
 ##### Type modifiers
 
-| Modifier | Description                                                  |
-| -------- | ------------------------------------------------------------ |
-| unsigned | To double the upper bound and reducing the lower bound to 0 so that data type doesn't have a negative value |
-| signed   | Gives negative and positive numbers but reducing the upper bound to half and lower bound to a negative value |
-| long     | Doubles the size of the postfixed data type. i.e. int have a size of 4 bytes using *long int* will increase the size to 8 bytes. |
-| short    | Reduces the size to half of the postfixed data type. *short int* will have a size of 2 bytes if int has size of 4 bytes for a given system. |
+| Modifier | Description                                                                                                                                 |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| unsigned | To double the upper bound and reducing the lower bound to 0 so that data type doesn't have a negative value                                 |
+| signed   | Gives negative and positive numbers but reducing the upper bound to half and lower bound to a negative value                                |
+| long     | Doubles the size of the postfixed data type. i.e. int have a size of 4 bytes using _long int_ will increase the size to 8 bytes.            |
+| short    | Reduces the size to half of the postfixed data type. _short int_ will have a size of 2 bytes if int has size of 4 bytes for a given system. |
 
 ##### Type Qualifiers
 
-| Qualifier | Description                                                  |
-| --------- | ------------------------------------------------------------ |
-| const     | indicates the value won't change after being initialized     |
+| Qualifier | Description                                                                                                                                        |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| const     | indicates the value won't change after being initialized                                                                                           |
 | volatile  | indicates compiler shouldn't do any optimizations on the variable declared as volatile. This is useful only when code optimizations are turned on. |
-| register  | Forces compiler to save the value in a cpu register.         |
+| register  | Forces compiler to save the value in a cpu register.                                                                                               |
 
 ##### Type Conversion
 
 C uses type conversion where it looks at 2 operands on either side and convert the smaller one into the larger one and sizes are in the order. `long double > double > float > int(only char and short int) > long `. So for example we have an equation like `long + char - int * double`
 
-- 1st int * double will result into double as int will be converted to double
+- 1st int \* double will result into double as int will be converted to double
 - long + char will converted to long and now we will be left with `long - double`
 - finally we will get a result in double
 
-**stdint.h** defines a set of typedefs for exact-sized integer types i.e. int of size 8, 16 etc. and those are defined as ***int8_t, uint8_t, int16_t, uint16_t***, following a pattern ***(u)int(BITS)_t*** where u indicates unsigned and BITS indicates size of the data type. This also defines the size of each variable using the pattern (U)INT(BITS)\_MAX, (U)INT(BITS)\_MIN i.e. INT16_MAX, UINT16_MAX etc.
+**stdint.h** defines a set of typedefs for exact-sized integer types i.e. int of size 8, 16 etc. and those are defined as **_int8_t, uint8_t, int16_t, uint16_t_**, following a pattern **_(u)int(BITS)\_t_** where u indicates unsigned and BITS indicates size of the data type. This also defines the size of each variable using the pattern (U)INT(BITS)\_MAX, (U)INT(BITS)\_MIN i.e. INT16_MAX, UINT16_MAX etc.
 
-There are also macros defined in stdint which defines ***size_t*** (size_t is an unsigned int (32-bit system) or unsigned long long (64-bit compiler) which is used to define size of any object or return type of a function returning size of an object).  
-
-
+There are also macros defined in stdint which defines **_size_t_** (size_t is an unsigned int (32-bit system) or unsigned long long (64-bit compiler) which is used to define size of any object or return type of a function returning size of an object).
 
 ## The Stack Scope and Globals
 
@@ -1634,7 +1618,7 @@ void print_size(){
 }
 ```
 
-In file file.h there is a variable defined as `extern int THE_SIZE`. 
+In file file.h there is a variable defined as `extern int THE_SIZE`.
 
 - **extern** is a way to tell compiler that this variable does exist but in another external location more precisly in another file.
 - **static (at file level)** is kind of opposite of extern as it tells that variable should be accessible to only this file not others **(static at file level is different than at other places)**
@@ -1712,7 +1696,7 @@ Few things to learn from this is:
 
 ## Meet Duff's Device
 
-This was a device which was invented by Tom Duff, and is  simply a way to do something with c compiler. It basically break the loops into smaller parts of procedural program so that loop has to run less time because a loop can be expensive for CPU. This is just a program to copy content of an array to another 
+This was a device which was invented by Tom Duff, and is simply a way to do something with c compiler. It basically break the loops into smaller parts of procedural program so that loop has to run less time because a loop can be expensive for CPU. This is just a program to copy content of an array to another
 
 ```c
 int duffs_device(int *from, int *to, int count)
@@ -1751,11 +1735,11 @@ One more thing one can notice here is that switch statement's some cases are in 
 
 We are copying chars with pointer while incrementing them. So a line `*to++ = *from++` will copy the char from address of **to pointer** (take as 100) to **from pointer**(take as 200). after copying it will increment the values of both **to and from** with the use of unary increment ++. So when next time to will be pointing to 101 and from will be pointing at 201. Similarly it will copy all the values with incrementing the base address of both pointers.
 
-## Input Output Files 
+## Input Output Files
 
 As per above program a file is opened and things are written into it.
 
-- `FILE \*fopen( const char \*filename,  const char \*mode)`
+- `FILE \*fopen( const char \*filename, const char \*mode)`
 
   - **r, w, a, r+, w+, a+** . write and append works differently
 
@@ -1781,11 +1765,11 @@ As per above program a file is opened and things are written into it.
 
 - `fwrite(*addressdata, sizeofdata, times, *file)`-> This is used to write data in binary format
 
-    **Reading a file**
+**Reading a file**
 
 - `int fgetc(FILE *fp)`-> will read a character from the input file
 
-- `char *fgets(char *buff, int n, FILE *fp)`->  This function will read the file fp upto n-1 chars and put all those values in buff array. while loop can be stopped by equating with **Null**
+- `char *fgets(char *buff, int n, FILE *fp)`-> This function will read the file fp upto n-1 chars and put all those values in buff array. while loop can be stopped by equating with **Null**
 
 - `char* fscanf(FILE *fp,const char* format, char *buff)`-> This will do the same function as fgets.
 
@@ -1793,11 +1777,11 @@ As per above program a file is opened and things are written into it.
 
 - `fseek(FILE* file, long int offset, int whence)` -> to move pointer to somewhere in file
 
-  - SEEK\_SET -> Start offset from start of file
+  - SEEK_SET -> Start offset from start of file
 
-  - SEEK\_END -> Start offset from end of file
+  - SEEK_END -> Start offset from end of file
 
-  - SEEK\_CUR -> Start the offset from current pointer position
+  - SEEK_CUR -> Start the offset from current pointer position
 
 ```c
 int main(){
@@ -1819,7 +1803,7 @@ int main(){
 
 - `fflush`-> This is all OS dependent and many oem's doesn't implemented fflush. This is the reason many people don't recommend using fflush as this restrict platform independece and also introduce undefined behaviour. We can clear input stream with `fflush(stdin)`
 
-The below program will tell everything about reading and writing text files 
+The below program will tell everything about reading and writing text files
 
 ```c
 // File Handling
@@ -1830,7 +1814,7 @@ int textWrite(FILE *file){
     char *array[] = {"Dennis", "Ritchie"};
     // fputc, fputs, fprintf
     // int fputc(int char, FILE *file)
-    fputc('1', file);    // will write 1 in the file's starting. 
+    fputc('1', file);    // will write 1 in the file's starting.
     fputc(':', file);    // will write : to the file
     // int fputs(char *str, FILE *file)
     fputs("\n This is a string\n", file); // will write whole string to the file.
@@ -1862,7 +1846,7 @@ int readgets(FILE *file){
 
 int readfscanf(FILE *file){ // fscanf returns int value, that value will be equal to number of values
     char str[100];          // scanf is reading from file.
-    while (fscanf(file, "%s%s", str, &str[50])>0){ // here fscanf is taking 2 values str and &str[50] 
+    while (fscanf(file, "%s%s", str, &str[50])>0){ // here fscanf is taking 2 values str and &str[50]
         printf("%s %s\n", str, &str[50]);           // so it will be returning 2 and when there is only
     }                                               // 1 value left or 0 value left it will stop running
     return 0;
@@ -1877,13 +1861,13 @@ int main(){
         perror("Error: ");
         exit(EXIT_FAILURE);
     }
-//    textWrite(file); 
+//    textWrite(file);
 //    read(file);
 //    readgets(file);
     readfscanf(file);
 
     return 0;
-}   
+}
 ```
 
 Above code doesn't mention reading and writing binary files.
@@ -1909,7 +1893,7 @@ Above code doesn't mention reading and writing binary files.
 
 In C one can create a function taking variable number of inputs. This can be done with the help of a **stdarg.h** file.
 
-To make a function of variable arguments, one can use `int function(fmt, ...)`. The very 1st parameter is called named argument and ... is called **ellipses**. 
+To make a function of variable arguments, one can use `int function(fmt, ...)`. The very 1st parameter is called named argument and ... is called **ellipses**.
 
 ```c
 int sum(int total, ...){
@@ -1926,7 +1910,7 @@ int sum(int total, ...){
 
 In above code the first value passed is independent of variable argument function. This value can be anything as per our need. Here to calculate the sum total number of arguments are passed.
 
-1. we need to include `stdarg.h` header file to use variable function arguments. 
+1. we need to include `stdarg.h` header file to use variable function arguments.
 2. `va_list list` will declare the variable argument list
 3. `va_start(list, total)` will initialize the variable argument list.
 4. `va_arg(list, int)`. This is used to use a value from the variable argument list. 1st argument is the declared list and 2nd argument is the type of element we are processing. There can be more than 1 types of element in the same list i.e. `va_arg(list, int)` and `va_arg(list, char*)`, both are possible to used in a single function
@@ -2015,21 +1999,21 @@ int bad_copy(char *from, char *to)
 int safe_copy(char *from, char *to, int size)
 {
     assert(from != NULL && to != NULL && "this is just a NULL check");
-    
-    // don't use while (from[i] != '\0') as if string isn't ending with \0 it will go 
+
+    // don't use while (from[i] != '\0') as if string isn't ending with \0 it will go
     // past the required value to be copied and can give seg fault
-    
+
     if (size <= 0) return -1;
-    
+
     for (int i = 0; i < size-1; i++)
     {
         to[i] = from[i];
     }
-    to[size - 1] = '\0';		// end a string with NUL always. 
+    to[size - 1] = '\0';		// end a string with NUL always.
 }
 ```
 
-*bad_copy* is source of huge number of buffer overflows. It is flawed because it thinks that all the strings are going to end with '\0'. This can cause while loop to run infinitly.
+_bad_copy_ is source of huge number of buffer overflows. It is flawed because it thinks that all the strings are going to end with '\0'. This can cause while loop to run infinitly.
 
 In above code there are few things which one can observe
 
@@ -2040,12 +2024,12 @@ In above code there are few things which one can observe
 This is a list of things to prevent input errors:
 
 1. For each parameter, identify preconditions, and check if these conditions are returning error or failure. Always favour errors over failures.
-2. Add `assert` call at the beginning that check for each failure preconditions using `assert(test && "message").`  When it fails the system will print assert error with message. This message is very helpful as it will help why assert failed.
+2. Add `assert` call at the beginning that check for each failure preconditions using `assert(test && "message").` When it fails the system will print assert error with message. This message is very helpful as it will help why assert failed.
 3. For other preconditions print the error message or return error code
 4. Document why preconditions are necessary. So that another developer can figure out, if they are important anymore or not.
 5. If you are modifying the inputs always check they are formed correctly in the same function, if something went wrong abort the operation.
-6. Always check the error codes of the function you use, those funtions maybe *fopen, fclose, fread etc.* 
-7. Always  try to return the consistent return codes
+6. Always check the error codes of the function you use, those funtions maybe _fopen, fclose, fread etc._
+7. Always try to return the consistent return codes
 
 **Prevent Errors**
 
@@ -2056,7 +2040,7 @@ This is a list of things to prevent input errors:
 5. Try to prevent all errors, if not possible than try to reduce the possibility
 6. If there are errors which you can't fix then document them so that someone else working on code fix them.
 
-This can help to work on errors which are more important. 
+This can help to work on errors which are more important.
 
 **Fail Early and Openly**
 
@@ -2093,7 +2077,7 @@ For these things one can write automate tests or unit tests.
 
 ## Intermediate Makefiles
 
-The file structure of a project 
+The file structure of a project
 
 - LICENSE : Contain the licensing for the copyright
 - README.md : A Readme file which contains instructions on how to use the program
@@ -2146,7 +2130,7 @@ tests: $(TESTS)
 	sh ./tests/runtests.sh
 
 # The Cleaner
-clean: 
+clean:
 	rm -rf build $(OBJECTS) $(TESTS)
 	rm -f tests/tests.log
 	find . -name "*.gc*" -exec rm {} \;
@@ -2167,25 +2151,25 @@ check:
 
 **The Headers**
 
-1. CFLAGS: These are the usual C Flags which are set in whole of your project. One may have to adjust those according to **platform**. One can augment other CFLAGS options with the help of **OPTFLAGS**. 
+1. CFLAGS: These are the usual C Flags which are set in whole of your project. One may have to adjust those according to **platform**. One can augment other CFLAGS options with the help of **OPTFLAGS**.
 
 2. LIBS: These options are used when linking a library. Someone else can augment the linking options with **OPTLIBS**.
 
    1. ```bash
       make OPTFLAGS=-pthread
-      # or 
+      # or
       make PREFIX=/tmp install
-      # or 
+      # or
       make OPTFLAGS=-pthread PREFIX=/tmp install
       ```
 
 3. PREFIX: This is just a value which is set to /usr/lib if PREFIX is not already defined. PREFIX?=/usr/lib. Here ?= means that if value is not defined before than set it to assigned value otherwise don't do anything.
 
-4. SOURCES: We are using this as we want to list out dependencies for a specific target. We can write dependecies one by one or by this awesome feature of **gnu make** which uses **wildcard** to list out all the dependencies. Here we are listing all the dependenicies which are in src folder and another subfolder which ends with ".c" extension. This is handy when  we want to list all the dependencies for a target and in reality one can't do that for a very big project but with wildcard one can simply save all values in a variable and set variable as dependency.
+4. SOURCES: We are using this as we want to list out dependencies for a specific target. We can write dependecies one by one or by this awesome feature of **gnu make** which uses **wildcard** to list out all the dependencies. Here we are listing all the dependenicies which are in src folder and another subfolder which ends with ".c" extension. This is handy when we want to list all the dependencies for a target and in reality one can't do that for a very big project but with wildcard one can simply save all values in a variable and set variable as dependency.
 
-5. OBJECTS: This is set by **patsubst** which will take 3 arguments. 1st will be the filter for files needed to be processed and how to substitute those files and 3rd argument will be the list of files. So here all the files from SOURCES ending with *.c extension will be renamed to *.o extension and than those files will be assigned to OBJECTS. which again is a trick to list dependencies for some targets as there will be some targets which will need OBJECTS as dependencies.
+5. OBJECTS: This is set by **patsubst** which will take 3 arguments. 1st will be the filter for files needed to be processed and how to substitute those files and 3rd argument will be the list of files. So here all the files from SOURCES ending with _.c extension will be renamed to _.o extension and than those files will be assigned to OBJECTS. which again is a trick to list dependencies for some targets as there will be some targets which will need OBJECTS as dependencies.
 
-6. TEST_SRC: This is again using wildcard and listing all the test files present (notice all the test files are ending with _tests.c)
+6. TEST_SRC: This is again using wildcard and listing all the test files present (notice all the test files are ending with \_tests.c)
 
 7. TESTS: Here we are removing the .c extension from all the test files, simply means we are listing object files for all the TESTS so that if any test depends upon the object file of test we can simply list that in dependencies. **EVERYTHING ABOVE WE HAVE DONE JUST TO LIST OUT DEPENDENCIES FOR A TARGET WHICH IS SOMEWHAT IMPORTANT DURING BUILD PROCESS**.
 
@@ -2193,27 +2177,27 @@ check:
 
 9. SO_TARGET: Here we are again using **patsubst** to define shared object files. `.so` files are files which are not linked to executable but are required to run a program which depends on them. So `.so` files are probably will be available on someone's system and they aren't copied to executable, reducing the size of the executable and resources. But these should be present in the system.
 
-10. **THE TARGET BUILDS:- all:** As makefile always runs the very 1st target it will always run *all* when called without specifying any target and all is specifying \$(TARGET) \$(SO_TARGET) tests. On searching TARGET one will find that it is a library So make will build libraries 1st, than make unit tests
+10. **THE TARGET BUILDS:- all:** As makefile always runs the very 1st target it will always run _all_ when called without specifying any target and all is specifying \$(TARGET) \$(SO_TARGET) tests. On searching TARGET one will find that it is a library So make will build libraries 1st, than make unit tests
 
 11. **dev:** There are 2 targets named dev. 1st is simply setting CFLAGS for a developer build. and another one is calling all, nothing exceptional
 
-12. **$(TARGET):** `$(TARGET): CFLAGS += -fPIC` This simply adds a value for CFLAGS for library build. 
+12. **$(TARGET):** `$(TARGET): CFLAGS += -fPIC` This simply adds a value for CFLAGS for library build.
 
 13. **$(TARGET): build \$(OBJECTS)**: Here we are calling build first which is creating build directories and than compile all of the objects.
 
-14. **ar rcs \$@ \$(OBJECTS)**: This command is gnu specific command and will create archive with the name specified by **$@** and archive all the files specified by **$(OBJECTS)**. 
+14. **ar rcs \$@ \$(OBJECTS)**: This command is gnu specific command and will create archive with the name specified by **$@** and archive all the files specified by **$(OBJECTS)**.
 
 15. **ranlib $@:** This is again gnu specific tool which index archives. after running this on target we have build the library.
 
-16. **build**: is just creating build and bin directories if they are not available. *@ prefix prevent the given command to be printed on stdout*.
+16. **build**: is just creating build and bin directories if they are not available. _@ prefix prevent the given command to be printed on stdout_.
 
 17. **tests: CFLAGS += $(TARGET):** This will link `build/libYOUR_LIBRARY.a` library to each of the test.
 
 18. **tests:$(TESTS):** This says that tests depends on all the tests we have saved in (TESTS) variable, than action on this target is to run a simple shell script (a script which will run them all and report their output)
 
-19. **The Cleaning Part:** This just cleans the project. Removes the build, objects, tests and log files which were created during building or testing, also it removes some other junk files like *dSYM* files created by Xcode on Mac Systems.
+19. **The Cleaning Part:** This just cleans the project. Removes the build, objects, tests and log files which were created during building or testing, also it removes some other junk files like _dSYM_ files created by Xcode on Mac Systems.
 
-20. **Installer Part:** This will be used to install the project on any system. People may want to install on any other directory like /usr/local/lib. So PREFIX is used here to give flexibility to installer (which is actually common). It has dependency on *all*, so everything will be built before taking any action. Than the 1st action is creating a directory where the install location is specified (-d means create the dir if it doesn't exist). 2nd action just install the $(TARGETS) to the specified location in 2nd argument given to install.
+20. **Installer Part:** This will be used to install the project on any system. People may want to install on any other directory like /usr/local/lib. So PREFIX is used here to give flexibility to installer (which is actually common). It has dependency on _all_, so everything will be built before taking any action. Than the 1st action is creating a directory where the install location is specified (-d means create the dir if it doesn't exist). 2nd action just install the $(TARGETS) to the specified location in 2nd argument given to install.
 
 21. **The Checker** Just checks for the bad functions used in the program and will report if found any. `|| true` is a way to prevent make thinks that egrep failed when it didn't find any matches.
 
@@ -2221,7 +2205,7 @@ check:
 
 This is the libraries C links for the program. There are basically 2 types of libraries:
 
-1. **Static**: These libraries ends with `.a` extension and we also created these libraries with `ar`(a unix archive tool) in previous exercise. This is just a collection of some object files *ending with .o extension*. 
+1. **Static**: These libraries ends with `.a` extension and we also created these libraries with `ar`(a unix archive tool) in previous exercise. This is just a collection of some object files _ending with .o extension_.
 2. **Dynamic**: These libraries ends with `.so, .dll or many others formats in OS X`. When a Program which is dependent on these libraries are executed, OS loads these libraries dynamically and link them with your program.
 
 **Static Libraries** are good to use with small or medium sized projects, because these are easier to deal with **Author also likes to put all the code in Static library so the one can link that code to unit tests and to the files program needs**
@@ -2315,7 +2299,7 @@ error:
 
 compiling the program with dynamic linking `gcc ex29.c -ldl -o ex29`
 
-Here the program needs 4 arguments to run properly, And nothing is special in here to except a way to access shared libraries using **`dlopen, dlsym, dlerror, dlopen`**. 
+Here the program needs 4 arguments to run properly, And nothing is special in here to except a way to access shared libraries using **`dlopen, dlsym, dlerror, dlopen`**.
 
 - `void \*dlopen(const char *library_name, int Flags)`. On success it will return a non-NULL handle and on failure it will return NULL.
 - `int dlclose(void *handle)` return 0 on success and non-zero value on failure.
@@ -2327,11 +2311,11 @@ Here the program needs 4 arguments to run properly, And nothing is special in he
 > 0000000000000120 T fail_on_purpose
 > 00000000000000ae T lowercase
 > 0000000000000000 T print_a_message
->               U printf
->               U putchar
->               U puts
->               U tolower
->               U toupper
+> U printf
+> U putchar
+> U puts
+> U tolower
+> U toupper
 > 000000000000003c T uppercase
 
 ## Automated Testing
@@ -2361,9 +2345,9 @@ Below is a header file which will contain the unit testing macros.
     char *result = name();\
     if (result != 0) {\
         printf("FAILED: %s\n", result);\
-    }\ 
+    }\
     else {\
-        printf("ALL TESTS PASSED\n");\    
+        printf("ALL TESTS PASSED\n");\
     }\
     printf("Tests run: %d\n", tests_run());\
     exit(result != 0);\
@@ -2374,15 +2358,11 @@ int tests_run;
 #endif
 ```
 
-
-
-
-
 # Miscellaneous
 
 ## Pointers in C
 
-Pointers are very important topic in C. A pointer holds the address of any variable. To declare a variable as a pointer we need to use \* (astrick) sign. There are 2 very important signs we use, \* and other is &. 
+Pointers are very important topic in C. A pointer holds the address of any variable. To declare a variable as a pointer we need to use \* (astrick) sign. There are 2 very important signs we use, \* and other is &.
 
 This is how we can use pointers
 
@@ -2420,22 +2400,22 @@ When a C program is called OS will reserve some memory to the program. This memo
 - Static/Global variable part will store all the static and global variables so that every function in the program can use those.
 
 - Stack (Call Stack) Part is the part where code will save its all function and local variables
-  
+
   - Every function will create its stack frame where every function will store its locally defined variables, including main function.
-  
+
   - If main function calls another function it will go to the stack top above main functions stack frame and will create its own stack frame.
 
 Stack memory is allocated for program run, but if there are so many function calls in the program so that stack will fail to handle those in given amount of memory than it will overflow and this process is called **stack overflow**.
 
-**Heap** is another type of memory which has no set limit like stack. It can grow till system has free memory available. If heap size goes too far it will crash the whole system, this can be counted as a disadvantage of heap. To use **heap** in C we need to know about these 4 functions 
+**Heap** is another type of memory which has no set limit like stack. It can grow till system has free memory available. If heap size goes too far it will crash the whole system, this can be counted as a disadvantage of heap. To use **heap** in C we need to know about these 4 functions
 
 1. malloc    // to assign memory in heap
 
-2. calloc          
+2. calloc
 
 3. realloc
 
-4. free        // to free the space in heap
+4. free // to free the space in heap
 
 ```c
 #include<stdio.h>
@@ -2469,18 +2449,18 @@ Malloc will save given amount of memory in the heap for the program and will ret
 ##### **Memory allocation functions with their declaration**
 
 ```c
-// 1. malloc 
+// 1. malloc
 void * malloc(size_t size);    // size_t is the size of variable  passed
 // 2. calloc
 void * calloc(size_t num, size_t size); // num is the number of elements
 // size is the size of a single element.
-void * realloc(void* ptr, size_t size); // ptr is the pointer for old 
+void * realloc(void* ptr, size_t size); // ptr is the pointer for old
 // pointer and size is the size for the new pointer.
 ```
 
 **Calloc is similar to malloc** but you don't need to calculate number of elements and size separatly and multiply them. You can simply pass both values to the calloc function and Calloc will initialize all values to 0 unlike malloc which will return garbage values from the memory block.
 
-**Realloc** is used to reallocated already allocated pointer to somewhere else with a new size. 
+**Realloc** is used to reallocated already allocated pointer to somewhere else with a new size.
 
 **Using malloc/calloc in a program**:
 
@@ -2488,7 +2468,7 @@ void * realloc(void* ptr, size_t size); // ptr is the pointer for old
 int main(int argc, char* argv[]){
     int n;
     scanf("%i", &n);
-    int array[n]; // this will give error as array size should be 
+    int array[n]; // this will give error as array size should be
                   // known before compilation of program.
 }
 ```
@@ -2501,7 +2481,7 @@ int main(){
     int *array;
     scanf("%i", &n);
     array = (int*) malloc(n*sizeof(int)); // dynamically allocated array
-//  array = (int*) calloc(n, sizeof(int)); allocation with calloc.    
+//  array = (int*) calloc(n, sizeof(int)); allocation with calloc.
 }
 ```
 
@@ -2546,7 +2526,7 @@ int main(int argc, char *argv[]){
 
 - main function will execute and create a stack frame for itself and save variable `value` as a local variable in its stack frame.
 
-- than main will encounter inc function and it will create another stack frame for itself, and than copy actual argument and pass them as formal arguments. 
+- than main will encounter inc function and it will create another stack frame for itself, and than copy actual argument and pass them as formal arguments.
 
 - **Each variable will be saved in a lookup table to be accessed later**
 
@@ -2618,7 +2598,7 @@ The print statement in main will return 12 with a system using 4 bytes for int, 
 ```c
 int* sum(int* a, int *b){
     int c = (*a) + (*b);
-    return &c;    
+    return &c;
 }
 
 int main(){
@@ -2632,13 +2612,13 @@ int main(){
 }
 ```
 
-here ptr will hold the address of variable c returned by sum. But after execution of sum is over it will deallocate all the memory used by sum in stack so if someone is lucky the *p will not be overwritten but if it is overwritten than the print statement will return some garbage value. So better approach is to use heap rather than stack for these type of tasks.
+here ptr will hold the address of variable c returned by sum. But after execution of sum is over it will deallocate all the memory used by sum in stack so if someone is lucky the \*p will not be overwritten but if it is overwritten than the print statement will return some garbage value. So better approach is to use heap rather than stack for these type of tasks.
 
 ```c
 int* sum(int* a, int* b){
     int *c = (int*) malloc(sizeof(int));
     *c = (*a) + (*b);
-    return c;    
+    return c;
 }
 
 int main(){
@@ -2649,7 +2629,7 @@ int main(){
 
 ##### Function Pointers
 
-A function pointer for function `int add(int a, int b)`  will be `int (*p)(int, int)`
+A function pointer for function `int add(int a, int b)` will be `int (*p)(int, int)`
 
 and to execute this function using pointer. `(*p)(2,4)`
 
@@ -2663,7 +2643,7 @@ int main(){
     int (*ptr)(int ,int);
     ptr = &sum ; // ptr = sum; is same
     int result = (*ptr)(2,4) // ptr(2,4) will be same
-    printf("%i\n", result)   // this will print 6  
+    printf("%i\n", result)   // this will print 6
 }
 ```
 
@@ -2709,7 +2689,7 @@ char string[] = {'s', 'o', 'm', 'e', '/0'}; // NUL needed explicitly
 char *string = "some";    // constant string
 ```
 
-When a string is defined as a  char pointer it will be stored as a constant in the memory. Any attempt to modify them will give runtime error as they are stored in memory inaccesible for a user and will raise sefmentation fault.
+When a string is defined as a char pointer it will be stored as a constant in the memory. Any attempt to modify them will give runtime error as they are stored in memory inaccesible for a user and will raise sefmentation fault.
 
 But if a string is defined as char array it can be modified easily even with a external function like below
 
@@ -2737,21 +2717,21 @@ The above code can be used to modify the string array but if we don't want any e
 
 - int strncmp(string1, string2, n) --> it will compare 2 strings until it found one difference upto n chars
 
-- char \*strncpy(string1, string2, n) 
+- char \*strncpy(string1, string2, n)
 
 #### Input Output <stdio.h>
 
 - printf("%d", value)    --> write in terminal
 
-- scanf("%d", value)     --> take input from terminal
+- scanf("%d", value) --> take input from terminal
 
-- sizeof(var)   --> will return size of var in bytes
+- sizeof(var) --> will return size of var in bytes
 
 - strdup(string) --> will return a copy of string
 
 #### Limits <limits.h>
 
-- INT\_MAX / INT\_MIN / UINT\_MIN  --> will return the max size of int
+- INT_MAX / INT_MIN / UINT_MIN --> will return the max size of int
 
 #### C- type <ctype.h>
 
@@ -2765,4 +2745,5 @@ The above code can be used to modify the string array but if we don't want any e
 
 #### Booleans <stdbool.h>
 
-- true / false --> to use true false values in program    
+- true / false --> to use true false values in program
+
