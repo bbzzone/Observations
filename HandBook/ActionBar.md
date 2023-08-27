@@ -38,7 +38,8 @@ Add below line to your themes
 
 ```java
 @Override
-public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+public boolean onCreateOptionsMenu(Menu menu) {
+    MenuInflater inflater = getMenuInflater();
     inflater.inflate(R.menu.your_menu, menu);
 
     int positionOfMenuItem = 0; // or whatever...
@@ -46,6 +47,7 @@ public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
     SpannableString s = new SpannableString("My red MenuItem");
     s.setSpan(new ForegroundColorSpan(Color.RED), 0, s.length(), 0);
     item.setTitle(s);
+    return true;
 }
 ```
 

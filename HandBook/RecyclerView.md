@@ -210,6 +210,17 @@ public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHo
 
 
 
+#### Using View Bindings with RecyclerView
+
+To use view bindings with recyclerView we can use it's viewbinding class to create a view. We need to add following lines to our `onCreateViewHolder` method in `Adapter class`.
+
+```java
+binding = ProcessItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+return new ItemView(binding.getRoot());
+```
+
+
+
 #### Scroll To a particular position
 
 There are many methods for scroll in RecyclerView but these are few commonly used ones.
@@ -263,7 +274,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.HoldVi
     @Override
     public int getItemCount() {...}
 
-    // Implement onClickListner (Not necessary, will work find without it)
+    // Implement onClickListner (Not necessary, will work fine without it)
     class HoldView extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView textView;
         public HoldView(@NonNull View itemView) {
@@ -318,7 +329,7 @@ binding.recycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
    
 
-### RecyclerView Scrolling Items one by one
+### RecyclerView Scrolling Items one by one like viewpager
 
 Create a custom class extending LinearShapeHelper and override the method `findTargetSnapPosition`. 
 
@@ -375,7 +386,11 @@ linearSnapHelper.attachToRecyclerView(recyclerView);
 
 
 
+# TroubleShooting Guide
 
+## Wrong Item Changes in RecyclerView
+
+It is because RecyclerView reuses our views every time we scroll. One solution to this is setting recyclerview not to recycle views by using this line of code in `onBindViewHolder`: `holder.setIsRecyclable(false)`. This will make recyclerView to refresh view everytime someone scrolls but this is completely opposite of what recyclerView does. So [Here](https://stackoverflow.com/questions/45029681/wrong-item-changes-in-recyclerview) is an answer on how to fix this with if-else checks in **`onBindViewHolder`**.
 
 
 
