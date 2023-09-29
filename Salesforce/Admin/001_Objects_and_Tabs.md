@@ -98,11 +98,13 @@ Auto Number is a number which will be incremented automatically we only need to 
 
 **After setting Record Name one will navigate to optional Features**
 
-?????
-
-
+- *Allow Reports* => This checkbox is to allow Reports for the object. If this is disabled Reports will not work for this object.
+- *Track Field History* => This is used to Track the history of a field which can be enabled in Object settings (Fields and Relationship -> Set History Tracking) than adding the field in **Page Layout**.
+- *Allow in Chatter Groups* => This is used to enable *Feed Tracking* for a field.
+- *Allow Activities* => These will be used to Enable activities like **tasks, events and calendars**.
 
 Now after going through all the options we need to check Launch new Custom Tab Wizard. This makes it easy to create tab for the particular object but if we forgets to create a tab using this check, we can create tab later for the object.
+
 
 ### Tab creation
 
@@ -110,7 +112,7 @@ Now after going through all the options we need to check Launch new Custom Tab W
 2. After clicking next, we will be navigated to a page for selecting Tab visibility for different types of profiles. Like if we want tab to be invisible for `Custom community user` profile then we can do that in this page.
 3. Now it will ask for which apps we need to add the custom tab. It will list all the apps and we need to select the ones which we want our new custom tab in.
 
-- **If we forgot to create the tab for the object while creating the object**. We can create it by going to Home and navigating or searching tabs and then the same menu as before will appear and we can create the tab for that object.
+- **If we forgot to create the tab for the object while creating the object**. We can create it by going to Home and navigating or searching *tabs* and then the same menu as before will appear and we can create the tab for that object.
 
 
 
@@ -130,9 +132,7 @@ Fields are like columns in an excel sheet. But like other databases we need to d
 8. In the next step we need to set if the field is visible for page layout(Inside Record -> Details section).
 
 
-
 There are various datatypes for salesforce fields. **Auto Number, Formula, Roll-up Summary, Lookup Relationship, Master-Detail Relationship, External Lookup Relationship, Checkbox, Currency, Date, Date/Time, Email, Geolocation, Number, Percent, Phone, Picklist, Picklist(Multi-Select), Text, Text Area, Text Area (long), Text Area (Rich), Text (Encrypted), Time, URL**
-
 
 
 ## Creating Records
